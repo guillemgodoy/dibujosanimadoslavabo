@@ -134,6 +134,7 @@ void cargardibujos()
   //for (int i=0;string(listaficheros[i])!="";i++) {
   //string nomaux=string(listaficheros[i])+".bmp";
   for (int i=0;i<int(v.size());i++) {
+    cout<<"cargando "<<i<<endl;
     string nomaux=v[i];
     string nomsinpng=nomaux.substr(posicionbarra(nomaux));
     nomsinpng=nomsinpng.substr(0,int(nomsinpng.size())-4);
