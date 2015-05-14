@@ -1,5 +1,6 @@
 ventana 1280 720
 fps 30
+
 letras fv
 letras mbp
 letras uqw
@@ -11,7 +12,6 @@ letras ek
 letras o
 letras a
 
-camara 3840 2160 7680 4320
 
 // DEFINIMOS LOS PERSONAJES:
 
@@ -23,9 +23,9 @@ forma friend brazoizquierdo normal
 forma kevin brazoizquierdo normal
 forma person brazoizquierdo normal
 
-forma friend brazoderecho normal
-forma kevin brazoderecho normal
-forma person brazoderecho normal
+forma friend brazoderecha normal
+forma kevin brazoderecha normal
+forma person brazoderecha normal
 
 forma friend camisetafriend normal
 forma kevin camisetakevin normal
@@ -34,6 +34,10 @@ forma person camisetaperson normal
 forma friend pantalonesfriend normal
 forma kevin pantaloneskevin normal
 forma person pantalonesperson normal
+
+forma friend zapatosfriend normal
+forma kevin zapatoskevin normal
+forma person zapatosperson normal
 
 forma friend pelofriend normal
 forma kevin pelokevin normal
@@ -58,15 +62,42 @@ forma person bocaperson normal
 prefijoboca kevin bocakevin
 prefijoboca person bocaperson
 
+
+
+
+// CENTRAMOS A LOS PERSONAJES
+
 centra friend 2112 800
 centra kevin 2112 800
 centra person 2112 800
+
+
+
+
+// COLOCAMOS A LOS PERSONAJES
 
 coloca friend 1000 2000
 coloca kevin 2000 2000
 coloca person 6000 2000
 
+
+camara 3840 2160 7680 4320
+
 tiempo 4000
+
+muevecamara 1500 2000 1280 720
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 obviar
