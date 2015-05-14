@@ -848,6 +848,23 @@ void dibujarestadogeneral(estadogeneral &e,int numframe)
   */
 }
 
+sf::Clock reloj;
+
+void iniciartiempo()
+{
+  reloj.restart();
+}
+
+void esperartiempo()
+{
+  sf::Time esperar=sf::seconds(1.0/framespersecond);
+  bool hayespera=false;
+  while (reloj.getElapsedTime()<esperar) hayespera=true;
+  if (not hayespera) cout<<"No hay espera"<<endl;
+  reloj.restart();
+}
+
+
 int main()
 {
   //allegro_init();
@@ -878,6 +895,8 @@ int main()
 
   
   int ilistaaudios=0;
+  
+  iniciartiempo();
 
   for (int i=0;i<int(ve.size()) /*&& !key[KEY_ESC]*/;i++) {
     sf::Event event;
@@ -905,6 +924,8 @@ int main()
     
     dibujarestadogeneral(ve[i],i);
 
+    esperartiempo();
+
     //acquire_screen();
     
     //draw_sprite( screen, pantalla, 0, 0);
@@ -918,7 +939,7 @@ int main()
     //rest(100);
     //rest(1000/framespersecond);
     
-    usleep(1000000/framespersecond);
+    //usleep(1000000/framespersecond);
   }
   
   //return 0;

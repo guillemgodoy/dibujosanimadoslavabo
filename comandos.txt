@@ -19,9 +19,9 @@ forma friend cabeza normal
 forma kevin cabeza normal
 forma person cabeza normal
 
-forma friend brazoizquierdo normal
-forma kevin brazoizquierdo normal
-forma person brazoizquierdo normal
+forma friend brazoizquierda normal
+forma kevin brazoizquierda normal
+forma person brazoizquierda normal
 
 forma friend brazoderecha normal
 forma kevin brazoderecha normal
@@ -43,6 +43,10 @@ forma friend pelofriend normal
 forma kevin pelokevin normal
 forma person peloperson normal
 
+forma friend cuello normal
+forma kevin cuello normal
+forma person cuello normal
+
 forma friend ojosfriend medio
 forma kevin ojoskevin medio
 forma person ojosperson medio
@@ -55,6 +59,10 @@ forma friend cejasfriend normal
 forma kevin cejaskevin normal
 forma person cejasperson normal
 
+forma friend narizfriend normal
+forma kevin narizkevin normal
+forma person narizperson normal
+
 forma friend bocafriend normal
 forma kevin bocakevin normal
 forma person bocaperson normal
@@ -62,30 +70,80 @@ forma person bocaperson normal
 prefijoboca kevin bocakevin
 prefijoboca person bocaperson
 
+// gafas orejas
+
+profundidad friend cuello 10
+profundidad friend zapatosfriend 20
+profundidad friend pantalonesfriend 30
+profundidad friend camisetafriend 40
+profundidad friend cabeza 50
+profundidad friend brazoizquierda 60
+profundidad friend brazoderecha 70
+profundidad friend ocularfriend 80
+profundidad friend ojosfriend 90
+profundidad friend narizfriend 100
+profundidad friend cejasfriend 110
+profundidad friend bocafriend 120
+profundidad friend pelofriend 130
+
+profundidad kevin cuello 10
+profundidad kevin zapatoskevin 20
+profundidad kevin pantaloneskevin 30
+profundidad kevin camisetakevin 40
+profundidad kevin cabeza 50
+profundidad kevin brazoizquierda 60
+profundidad kevin brazoderecha 70
+profundidad kevin ocularkevin 80
+profundidad kevin ojoskevin 90
+profundidad kevin narizkevin 100
+profundidad kevin cejaskevin 110
+profundidad kevin bocakevin 120
+profundidad kevin pelokevin 130
+
+
+profundidad person cuello 10
+profundidad person zapatosperson 20
+profundidad person pantalonesperson 30
+profundidad person camisetaperson 40
+profundidad person cabeza 50
+profundidad person brazoizquierda 60
+profundidad person brazoderecha 70
+profundidad person ocularperson 80
+profundidad person ojosperson 90
+profundidad person narizperson 100
+profundidad person cejasperson 110
+profundidad person bocaperson 120
+profundidad person peloperson 130
 
 
 
 // CENTRAMOS A LOS PERSONAJES
 
-centra friend 2112 800
-centra kevin 2112 800
-centra person 2112 800
+centra friend 352 100
+centra kevin 352 100
+centra person 352 100
 
 
 
 
 // COLOCAMOS A LOS PERSONAJES
 
-coloca friend 1000 2000
-coloca kevin 2000 2000
-coloca person 6000 2000
+coloca friend 100 200
+coloca kevin 400 200
+coloca person 800 200
 
 
-camara 3840 2160 7680 4320
+//camara 3840 2160 7680 4320
 
-tiempo 4000
+tiempo 1000
 
-muevecamara 1500 2000 1280 720
+
+
+//habla kevin tehasquedadodescansandono tehasquedadodescansandono.wav
+
+//habla person esquenosepuedenpedirperasalholmo esquenosepuedenpedirperasalholmo.wav
+
+muevecamara 400 300 400 300 500
 
 
 
