@@ -15,13 +15,16 @@ muevecamara 'xini' 'yini' 'ancho' 'alto' 'tiempo'
 forma 'idpersonaje' 'idcaracteristica' 'forma'
 quita 'idpersonaje' 'idcaracteristica'
 profundidad 'idpersonaje' 'idcaracteristica' 'profundidad(entero)'
+prefijoboca 'idpersonaje' 'stringprefijoboca'
 tiempo 'tiempo'
+sonido 'ficheroaudio'
 obviar
 finobviar
 
 Los tiempos son en milisegundos. La escala es en tanto por ciento.
-Todos los valores numericos son numeros naturales, excepto el de profundidad,
-que tambien puede ser negativo. La lista de letras empieza por aquella en
+Todos los valores numericos son numeros naturales, excepto el de profundidad
+y las coordenadas de posiciones, que tambien pueden ser negativos.
+La lista de letras empieza por aquella en
 la que seran transformadas las otras letras al hablar.
 Las instrucciones fps y ventana solo deberian ejecutarse una vez, preferiblemente
 al principio de todo. Si hay varias ejecuciones de ellas, solo se tiene en cuenta

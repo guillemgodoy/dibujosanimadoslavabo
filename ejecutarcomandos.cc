@@ -330,18 +330,19 @@ void transformainstruccion(int linea,vector<pair<int,string> > &vis,vector<vecto
       morir(linea,columna,vis[0].second+" requiere 'listaletras'.");
     push_back_instruccion(vis,vvs);
   } else if (vis[0].second=="coloca" || vis[0].second=="centra" || vis[0].second=="escala") {
-    if (int(vis.size())!=4 || ! esnatural(vis[2].second) || ! esnatural(vis[3].second))
+    if (int(vis.size())!=4 || ! esentero(vis[2].second) || ! esentero(vis[3].second))
       morir(linea,columna,vis[0].second+" requiere 'idpersonaje' 'xfin' 'yfin'.");
     push_back_instruccion(vis,vvs);
   } else if (vis[0].second=="elimina") {
     if (int(vis.size())!=2)
       morir(linea,columna,vis[0].second+" requiere 'idpersonaje'.");
     push_back_instruccion(vis,vvs);
-  } else if (vis[0].second=="obviar") {
-    if (int(vis.size())!=1)
-      morir(linea,columna,vis[0].second+" no requiere parametros.");
+  } else if (vis[0].second=="transicionini" or vis[0].second=="transicionter" or vis[0].second=="transicionfin") {
+    if (int(vis.size())!=2)
+      morir(linea,columna,vis[0].second+" requiere 'idtransicion'.");
     push_back_instruccion(vis,vvs);
-  } else if (vis[0].second=="finobviar") {
+  } else if (vis[0].second=="obviar" or vis[0].second=="instantaneo"
+	     or vis[0].second=="finobviar" or vis[0].second=="fininstantaneo") {
     if (int(vis.size())!=1)
       morir(linea,columna,vis[0].second+" no requiere parametros.");
     push_back_instruccion(vis,vvs);
@@ -349,22 +350,26 @@ void transformainstruccion(int linea,vector<pair<int,string> > &vis,vector<vecto
     if (int(vis.size())!=3)
       morir(linea,columna,vis[0].second+" requiere 'idpersonaje' 'idcaracteristica'.");
     push_back_instruccion(vis,vvs);
+  } else if (vis[0].second=="prefijoboca") {
+    if (int(vis.size())!=3)
+      morir(linea,columna,vis[0].second+" requiere 'idpersonaje' 'stringprefijoboca'.");
+    push_back_instruccion(vis,vvs);
   } else if (vis[0].second=="habla") {
     if (int(vis.size())!=4 || esnatural(vis[2].second))
-      morir(linea,columna,vis[0].second+" requiere 'idpersonaje' 'frase' ('tiempo'||'fichero').");
+      morir(linea,columna,vis[0].second+" requiere 'idpersonaje' 'frase' ('tiempo'||'ficheroaudio').");
     push_back_instruccion(vis,vvs);
   } else if (vis[0].second=="mueve" || vis[0].second=="mueveconcamara") {
-    if (int(vis.size())!=5 || ! esnatural(vis[2].second) || ! esnatural(vis[3].second) ||
+    if (int(vis.size())!=5 || ! esentero(vis[2].second) || ! esentero(vis[3].second) ||
 	! esnatural(vis[4].second))
       morir(linea,columna,vis[0].second+" requiere 'idpersonaje' 'xfin' 'yfin' 'tiempo'.");
     push_back_instruccion(vis,vvs);
   } else if (vis[0].second=="camara") {
-    if (int(vis.size())!=5 || ! esnatural(vis[1].second) || ! esnatural(vis[2].second) ||
+    if (int(vis.size())!=5 || ! esentero(vis[1].second) || ! esentero(vis[2].second) ||
 	! esnatural(vis[3].second) || ! esnatural(vis[4].second))
       morir(linea,columna,vis[0].second+" requiere 'xini' 'yini' 'ancho' 'alto'.");
     push_back_instruccion(vis,vvs);
   } else if (vis[0].second=="muevecamara") {
-    if (int(vis.size())!=6 || ! esnatural(vis[1].second) || ! esnatural(vis[2].second) ||
+    if (int(vis.size())!=6 || ! esentero(vis[1].second) || ! esentero(vis[2].second) ||
 	! esnatural(vis[3].second) || ! esnatural(vis[4].second) || ! esnatural(vis[5].second))
       morir(linea,columna,vis[0].second+" requiere 'xini' 'yini' 'ancho' 'alto' 'tiempo'.");
     push_back_instruccion(vis,vvs);
@@ -406,6 +411,10 @@ void transformainstruccion(int linea,vector<pair<int,string> > &vis,vector<vecto
   } else if (vis[0].second=="tiempo") {
     if (int(vis.size())!=2 || ! esnatural(vis[1].second))
       morir(linea,columna,vis[0].second+" requiere 'tiempo'.");
+    push_back_instruccion(vis,vvs);
+  } else if (vis[0].second=="sonido") {
+    if (int(vis.size())!=2)
+      morir(linea,columna,vis[0].second+" requiere 'ficheroaudio'.");
     push_back_instruccion(vis,vvs);
   } else
     morir(linea,columna,"'"+vis[0].second+"' no es una instruccion valida.");
@@ -452,10 +461,11 @@ struct estadopersonaje {
   map<string,string> caracteristica2forma;
   map<string,int> caracteristica2profundidad;
   map<string,int> caracteristica2color;
-
+  string prefijoboca;
   estadopersonaje() {
     x=y=xcentro=ycentro=flip=0;
     xescala=yescala=100;
+    prefijoboca="boca";
   }
 };
 
@@ -506,9 +516,22 @@ void escribe(vector<estadogeneral> &ve)
 
 void transformaaestados(vector<string> &vs,vector<estadogeneral> &ve,estadogeneral &e,
 			map<string,int> &color,map<char,char> &letra2letra,
-			vector<pair<int,string> > &listaaudios)
+			vector<pair<int,string> > &listaaudios,
+			bool &instantaneo,map<string,int> &frametransicion)
 {
-  if (vs[0]=="habla") {
+  if (vs[0]=="instantaneo") {
+    instantaneo=true;
+  } else if (vs[0]=="fininstantaneo") {
+    instantaneo=false;
+  } else if (vs[0]=="sonido") {
+    sf::SoundBuffer soundbuffer=obteneraudiobuffer(vs[1]);
+    int numframes=int(soundbuffer.getDuration().asMilliseconds())*framespersecond/1000;
+    if (not instantaneo) {
+      listaaudios.push_back(pair<int,string> (int(ve.size()),vs[1]));
+      for (int i=0;i<numframes;i++)
+	ve.push_back(e);
+    }
+  } else if (vs[0]=="habla") {
     estadopersonaje &p=e.p[vs[1]];
     string frase=vs[2];
     int numframes;
@@ -517,12 +540,13 @@ void transformaaestados(vector<string> &vs,vector<estadogeneral> &ve,estadogener
     else {
       sf::SoundBuffer soundbuffer=obteneraudiobuffer(vs[3]);
       numframes=int(soundbuffer.getDuration().asMilliseconds())*framespersecond/1000;
-      listaaudios.push_back(pair<int,string> (int(ve.size()),vs[3]));
+      if (not instantaneo)
+	listaaudios.push_back(pair<int,string> (int(ve.size()),vs[3]));
     }
-    string &forma=p.caracteristica2forma["boca"];
+    string &forma=p.caracteristica2forma[p.prefijoboca];
     if (forma=="" || int(forma.size())>1) forma="a";
     char &c=forma[int(forma.size())-1];
-    if (numframes<=0) {
+    if (instantaneo or numframes<=0) {
       c=letra2letra[frase[int(frase.size())-1]];
     } else if (numframes==1) {
       c=letra2letra[frase[int(frase.size())-1]];
@@ -547,7 +571,7 @@ void transformaaestados(vector<string> &vs,vector<estadogeneral> &ve,estadogener
     int &ycamara=e.ycamara;
     int despxcamara=xcamara-x;
     int despycamara=ycamara-y;
-    if (numframes<=0) {
+    if (instantaneo or numframes<=0) {
       x=xfin;
       y=yfin;
       if (vs[0]=="mueveconcamara") {
@@ -587,7 +611,7 @@ void transformaaestados(vector<string> &vs,vector<estadogeneral> &ve,estadogener
     int anchofin=stoi(vs[3]);
     int altofin=stoi(vs[4]);
     int numframes=stoi(vs[5]);
-    if (numframes<=0) {
+    if (instantaneo or numframes<=0) {
       x=xfin;
       y=yfin;
     } else if (numframes==1) {
@@ -620,11 +644,14 @@ void transformaaestados(vector<string> &vs,vector<estadogeneral> &ve,estadogener
   } else if (vs[0]=="quita") {
     estadopersonaje &p=e.p[vs[1]];
     p.caracteristica2forma.erase(vs[2]);
+  } else if (vs[0]=="prefijoboca") {
+    estadopersonaje &p=e.p[vs[1]];
+    p.prefijoboca=vs[2];
   } else if (vs[0]=="luz") {
     int luzini=e.luz;
     int luzfin=stoi(vs[1]);
     int numframes=stoi(vs[2]);
-    if (numframes<=0) {
+    if (instantaneo or numframes<=0) {
       e.luz=luzfin;
     } else if (numframes==1) {
       e.luz=luzfin;
@@ -636,9 +663,11 @@ void transformaaestados(vector<string> &vs,vector<estadogeneral> &ve,estadogener
       }
     }
   } else if (vs[0]=="tiempo") {
-    int numframes=stoi(vs[1]);
-    for (int i=0;i<numframes;i++)
-      ve.push_back(e);
+    if (not instantaneo) {
+      int numframes=stoi(vs[1]);
+      for (int i=0;i<numframes;i++)
+	ve.push_back(e);
+    }
   } else if (vs[0]=="letras") {
     string &letras=vs[1];
     for (int i=0;i<int(letras.size());i++)
@@ -665,19 +694,28 @@ void transformaaestados(vector<vector<string> > &vvs,vector<estadogeneral> &ve,
 			vector<pair<int,string> > &listaaudios)
 {
   estadogeneral e;
+  map<string,int> frametransicion;
   e.xcamara=window.getSize().x/2;
   e.ycamara=window.getSize().y/2;
   e.anchocamara=window.getSize().x;
   e.altocamara=window.getSize().y;
-
+  bool instantaneo=false;
   map<string,int> color;
   map<char,char> letra2letra;
   for (int i=0;i<int(vvs.size());i++) {
     if (vvs[i][0]=="obviar")
       while (i<int(vvs.size()) and vvs[i][0]!="finobviar")
 	i++;
-    else
-      transformaaestados(vvs[i],ve,e,color,letra2letra,listaaudios);
+    else if (vvs[i][0]=="transicionini") {
+      if (frametransicion.count(vvs[i][1])) {
+	cout<<"Transicion "<<vvs[i][1]<<" se definio dos veces."<<endl;
+	exit(0);
+      }
+      frametransicion[vvs[i][1]]=int(ve.size());
+    } else if (vvs[i][0]=="transicionter") {
+
+    } else
+      transformaaestados(vvs[i],ve,e,color,letra2letra,listaaudios,instantaneo,frametransicion);
   }
 }
 
@@ -762,21 +800,34 @@ void dibujarestadogeneral(estadogeneral &e,int numframe)
   vector<plandibujo> vp=transformaaplandibujo(e);
   //cout<<endl<<endl;
   //escribe(vp);
+  float xescala=float(window.getSize().x)/e.anchocamara;
+  float yescala=float(window.getSize().y)/e.altocamara;
+  float leftwindow=e.xcamara-e.anchocamara/2.0;
+  float topwindow=e.ycamara-e.altocamara/2.0;
+  //cout<<"("<<window.getSize().x<<","<<window.getSize().y<<")";
   for (int i=0;i<int(vp.size());i++) {
     plandibujo &p=vp[i];
     //draw_sprite(pantalla,obtenerdibujo(p.dibujo),p.x,p.y);
     sf::Sprite &d=obtenerdibujo(p.dibujo);
-    sf::Transform t = sf::Transform::Identity;
+    //sf::Transform t = sf::Transform::Identity;
+    float xdesp=p.x-leftwindow;
+    float ydesp=p.y-topwindow;
     d.setOrigin(p.xcentro,p.ycentro);
-    d.setPosition(p.x,p.y);
-    d.setScale(p.xescala/100.0,p.yescala/100.0);
-    window.draw(d,t);
+    d.setPosition(xdesp*xescala,ydesp*yescala);
+    //d.setPosition(p.x,p.y);
+    d.setScale(xescala*p.xescala/100.0,yescala*p.yescala/100.0);
+    window.draw(d);
   }
+  sf::View view;
+  view.setCenter(sf::Vector2f(window.getSize().x/2.0,window.getSize().y/2.0));
+  view.setSize(sf::Vector2f(window.getSize().x,window.getSize().y));
+  window.setView(view);
+  /*
   sf::View view;
   view.setCenter(sf::Vector2f(e.xcamara,e.ycamara));
   view.setSize(sf::Vector2f(e.anchocamara,e.altocamara));
   window.setView(view);
-
+  */
   window.display();
   //stretch_blit(portatil,pantalla,0,0,portatil->w,portatil->h,180,400,130,100);
   //stretch_blit(portatil,pantalla,0,0,portatil->w,portatil->h,650,400,130,100);
@@ -794,20 +845,6 @@ void dibujarestadogeneral(estadogeneral &e,int numframe)
   textout_ex(pantalla,font,s.c_str(),10,10,
 	       makecol(255,0,0),makecol(0,0,0));
   */
-}
-
-sf::Clock controltiempo;
-
-void iniciartiempo()
-{
-  controltiempo.restart();
-}
-
-void esperartiempo()
-{
-  sf::Time tiempoframe=sf::seconds(float(1.0/framespersecond));
-  while (controltiempo.getElapsedTime()<tiempoframe) ;
-  controltiempo.restart();
 }
 
 int main()
@@ -837,10 +874,9 @@ int main()
   vector<pair<int,string> > listaaudios;
 
   cargarve(ve,listaaudios);
+
   
   int ilistaaudios=0;
-
-  iniciartiempo();
 
   for (int i=0;i<int(ve.size()) /*&& !key[KEY_ESC]*/;i++) {
     sf::Event event;
@@ -881,9 +917,7 @@ int main()
     //rest(100);
     //rest(1000/framespersecond);
     
-
-    esperartiempo();
-    //usleep(1000000/framespersecond);
+    usleep(1000000/framespersecond);
   }
   
   //return 0;

@@ -1,10 +1,75 @@
-ventana 500 500
+ventana 1280 720
 fps 30
-letras eqrtisdfghjklzxcn
-letras mpbv
+letras fv
+letras mbp
+letras uqw
+letras cdhjx
+letras lnrz
+letras ts
+letras igy
+letras ek
+letras o
 letras a
-letras ow
-letras uy
+
+camara 3840 2160 7680 4320
+
+// DEFINIMOS LOS PERSONAJES:
+
+forma friend cabeza normal
+forma kevin cabeza normal
+forma person cabeza normal
+
+forma friend brazoizquierdo normal
+forma kevin brazoizquierdo normal
+forma person brazoizquierdo normal
+
+forma friend brazoderecho normal
+forma kevin brazoderecho normal
+forma person brazoderecho normal
+
+forma friend camisetafriend normal
+forma kevin camisetakevin normal
+forma person camisetaperson normal
+
+forma friend pantalonesfriend normal
+forma kevin pantaloneskevin normal
+forma person pantalonesperson normal
+
+forma friend pelofriend normal
+forma kevin pelokevin normal
+forma person peloperson normal
+
+forma friend ojosfriend medio
+forma kevin ojoskevin medio
+forma person ojosperson medio
+
+forma friend ocularfriend normal
+forma kevin ocularkevin normal
+forma person ocularperson normal
+
+forma friend cejasfriend normal
+forma kevin cejaskevin normal
+forma person cejasperson normal
+
+forma friend bocafriend normal
+forma kevin bocakevin normal
+forma person bocaperson normal
+
+prefijoboca kevin bocakevin
+prefijoboca person bocaperson
+
+centra friend 2112 800
+centra kevin 2112 800
+centra person 2112 800
+
+coloca friend 1000 2000
+coloca kevin 2000 2000
+coloca person 6000 2000
+
+tiempo 4000
+
+
+obviar
 coloca guille 150 30
 centra nuria 200 125
 //camara 30 30 300 300
@@ -24,16 +89,20 @@ profundidad nuria pupila 1
 
 //mueveconcamara nuria 200 100 1000
 //obviar
+//instantaneo
 mueve nuria 200 100 1000
+//fininstantaneo
 //finobviar
 
-//muevecamara 200 100 200 200 1000
+muevecamara 200 100 200 200 1000
 
 //elimina guille
 //quita nuria pelo
-
+//instantaneo
 forma nuria pupila azulderecha
-habla nuria adiosm yameesperabalopeor.wav
+habla nuria aoaoem esquenosepuedenpedirperasalholmo.wav
 tiempo 500
+//fininstantaneo
 habla nuria astalaproximam 2000
 luz 100 1000
+finobviar
