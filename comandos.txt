@@ -33,7 +33,7 @@ mueve nuria 200 100 1000
 //quita nuria pelo
 
 forma nuria pupila azulderecha
-habla nuria adiosm prova.ogg
+habla nuria adiosm yameesperabalopeor.wav
 tiempo 500
 habla nuria astalaproximam 2000
 luz 100 1000

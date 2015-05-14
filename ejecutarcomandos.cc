@@ -796,6 +796,20 @@ void dibujarestadogeneral(estadogeneral &e,int numframe)
   */
 }
 
+sf::Clock controltiempo;
+
+void iniciartiempo()
+{
+  controltiempo.restart();
+}
+
+void esperartiempo()
+{
+  sf::Time tiempoframe=sf::seconds(float(1.0/framespersecond));
+  while (controltiempo.getElapsedTime()<tiempoframe) ;
+  controltiempo.restart();
+}
+
 int main()
 {
   //allegro_init();
@@ -823,9 +837,10 @@ int main()
   vector<pair<int,string> > listaaudios;
 
   cargarve(ve,listaaudios);
-
   
   int ilistaaudios=0;
+
+  iniciartiempo();
 
   for (int i=0;i<int(ve.size()) /*&& !key[KEY_ESC]*/;i++) {
     sf::Event event;
@@ -866,7 +881,9 @@ int main()
     //rest(100);
     //rest(1000/framespersecond);
     
-    usleep(1000000/framespersecond);
+
+    esperartiempo();
+    //usleep(1000000/framespersecond);
   }
   
   //return 0;
