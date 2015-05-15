@@ -1,4 +1,5 @@
 ventana 1280 720
+//ventana 640 360
 fps 30
 
 letras fv
@@ -139,11 +140,11 @@ tiempo 1000
 
 
 
-//habla kevin tehasquedadodescansandono tehasquedadodescansandono.wav
+habla kevin eaeaooeeaaaoooooo tehasquedadodescansandono.wav
 
-//habla person esquenosepuedenpedirperasalholmo esquenosepuedenpedirperasalholmo.wav
+habla person eeooeuuueimmmpeeaaaomooo esquenosepuedenpedirperasalholmo.wav
 
-muevecamara 400 300 400 300 500
+//muevecamara 400 300 400 300 500
 
 
 

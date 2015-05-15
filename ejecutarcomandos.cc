@@ -32,6 +32,7 @@ struct infodibujo
   //BITMAP *b;
   sf::Texture t;
   sf::Sprite b;
+  int x,y,anchox,anchoy;
   //int media;
   //int elevacion;
 };
@@ -70,10 +71,10 @@ void morir(string s)
   exit(0);
 }
 
-sf::Sprite &obtenerdibujo(string s)
+infodibujo &obtenerdibujo(string s)
 {
   if (dibujo.count(s)==0) morir("no existe el dibujo: "+s);
-  return dibujo[s].b;
+  return dibujo[s];
 }
 
 sf::SoundBuffer &obteneraudiobuffer(string s)
@@ -127,40 +128,41 @@ int posicionbarra(string s)
 
 void cargardibujos()
 {
-  //pantalla=create_bitmap(1000,700);
-  //pantallafinal=create_bitmap(1000,700);
+  sf::Image imagen;
   system("ls graficosdibujosanimados/* >listaficheros.txt");
   vector<string> v=leerficherosepararstrings("listaficheros.txt");
-  //for (int i=0;string(listaficheros[i])!="";i++) {
-  //string nomaux=string(listaficheros[i])+".bmp";
   for (int i=0;i<int(v.size());i++) {
     cout<<"cargando "<<i<<endl;
     string nomaux=v[i];
     string nomsinpng=nomaux.substr(posicionbarra(nomaux));
     nomsinpng=nomsinpng.substr(0,int(nomsinpng.size())-4);
-    //dibujo[nomsinbmp].b=load_bitmap(nomaux.c_str(),NULL);
-    if (!dibujo[nomsinpng].t.loadFromFile(nomaux.c_str()))
+    if (!imagen.loadFromFile(nomaux.c_str()))
       morir("Error al leer "+nomaux);
+    int xminimo=imagen.getSize().x;
+    int yminimo=imagen.getSize().y;
+    int xmaximo=0,ymaximo=0;
+    for (int x=0;x<int(imagen.getSize().x);x++) {
+      for (int y=0;y<int(imagen.getSize().y);y++) {
+	if (imagen.getPixel(x,y).a!=0) {
+	  xminimo=min(xminimo,x);
+	  yminimo=min(yminimo,y);
+	  xmaximo=max(xmaximo,x);
+	  ymaximo=max(ymaximo,y);
+	}
+      }
+    }
+    if (xmaximo<xminimo or ymaximo<yminimo)
+      morir("Error dibujo "+nomaux+" sin contenido");
+    dibujo[nomsinpng].x=xminimo;
+    dibujo[nomsinpng].y=yminimo;
+    dibujo[nomsinpng].anchox=xmaximo-xminimo+1;
+    dibujo[nomsinpng].anchoy=ymaximo-yminimo+1;
+    cout<<nomsinpng<<" "<<xminimo<<" "<<yminimo<<" "<<xmaximo-xminimo+1<<" "<<ymaximo-yminimo+1<<endl;
+    //if (!dibujo[nomsinpng].t.loadFromImage(imagen,sf::IntRect(0,0,imagen.getSize().x,imagen.getSize().y)))
+    if (!dibujo[nomsinpng].t.loadFromImage(imagen,sf::IntRect(xminimo,yminimo,xmaximo-xminimo+1,ymaximo-yminimo+1)))
+      morir("Error al traspasar "+nomaux);
     dibujo[nomsinpng].b.setTexture(dibujo[nomsinpng].t);
-    /*
-    BITMAP *b=dibujo[nomsinbmp].b;
-    int colorfonsallegro=makecol(0xFF, 0, 0xFF);
-    int n=b->h;
-    int m=b->w;
-    int colorfondo=getpixel(b,0,0);
-    for (int i=0;i<n;i++)
-      for (int j=0;j<m;j++)
-	if (getpixel(b,j,i)==colorfondo)
-	  putpixel(b,j,i,colorfonsallegro);
-    */
   }
-  /*
-  cargarlistaletras(listaa);
-  cargarlistaletras(listae);
-  cargarlistaletras(listao);
-  cargarlistaletras(listau);
-  cargarlistaletras(listam);
-  */
 }
 
 void cargaraudio()
@@ -809,15 +811,15 @@ void dibujarestadogeneral(estadogeneral &e,int numframe)
   for (int i=0;i<int(vp.size());i++) {
     plandibujo &p=vp[i];
     //draw_sprite(pantalla,obtenerdibujo(p.dibujo),p.x,p.y);
-    sf::Sprite &d=obtenerdibujo(p.dibujo);
+    infodibujo &info=obtenerdibujo(p.dibujo);
     //sf::Transform t = sf::Transform::Identity;
     float xdesp=p.x-leftwindow;
     float ydesp=p.y-topwindow;
-    d.setOrigin(p.xcentro,p.ycentro);
-    d.setPosition(xdesp*xescala,ydesp*yescala);
+    info.b.setOrigin(p.xcentro-info.x,p.ycentro-info.y);
+    info.b.setPosition(xdesp*xescala,ydesp*yescala);
     //d.setPosition(p.x,p.y);
-    d.setScale(xescala*p.xescala/100.0,yescala*p.yescala/100.0);
-    window.draw(d);
+    info.b.setScale(xescala*p.xescala/100.0,yescala*p.yescala/100.0);
+    window.draw(info.b);
   }
   sf::View view;
   view.setCenter(sf::Vector2f(window.getSize().x/2.0,window.getSize().y/2.0));
