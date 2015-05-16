@@ -1,4 +1,5 @@
 ventana 1280 720
+camara 640 360 1280 720
 //ventana 640 360
 fps 30
 
