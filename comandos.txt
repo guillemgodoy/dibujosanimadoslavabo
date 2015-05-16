@@ -79,8 +79,8 @@ profundidad friend zapatosfriend 20
 profundidad friend pantalonesfriend 30
 profundidad friend camisetafriend 40
 profundidad friend cabeza 50
-profundidad friend brazoizquierda 60
-profundidad friend brazoderecha 70
+profundidad friend brazoizquierda 20
+profundidad friend brazoderecha 20
 profundidad friend ocularfriend 80
 profundidad friend ojosfriend 90
 profundidad friend narizfriend 100
@@ -93,8 +93,8 @@ profundidad kevin zapatoskevin 20
 profundidad kevin pantaloneskevin 30
 profundidad kevin camisetakevin 40
 profundidad kevin cabeza 50
-profundidad kevin brazoizquierda 60
-profundidad kevin brazoderecha 70
+profundidad kevin brazoizquierda 20
+profundidad kevin brazoderecha 20
 profundidad kevin ocularkevin 80
 profundidad kevin ojoskevin 90
 profundidad kevin narizkevin 100
@@ -108,8 +108,8 @@ profundidad person zapatosperson 20
 profundidad person pantalonesperson 30
 profundidad person camisetaperson 40
 profundidad person cabeza 50
-profundidad person brazoizquierda 60
-profundidad person brazoderecha 70
+profundidad person brazoizquierda 20
+profundidad person brazoderecha 20
 profundidad person ocularperson 80
 profundidad person ojosperson 90
 profundidad person narizperson 100
