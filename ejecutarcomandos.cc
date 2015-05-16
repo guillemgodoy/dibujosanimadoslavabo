@@ -118,6 +118,18 @@ vector<string> leerficherosepararstrings(string nombrefichero)
   return v;
 }
 
+string leelineafichero(string filename)
+{
+  string contenido;
+  ifstream fcontenido(filename.c_str());
+  if (not fcontenido.is_open())
+    morir("Error interno al abrir '"+filename+"'.");
+  string s;
+  getline(fcontenido,contenido);
+  fcontenido.close();
+  return contenido;
+}
+
 int posicionbarra(string s)
 {
   for (int i=0;i<int(s.size());i++)
@@ -840,6 +852,7 @@ vector<plandibujo> transformaaplandibujo(estadogeneral &e)
 
 void cargarve(vector<estadogeneral> &ve)//,vector<pair<int,string> > &listaaudios)
 {
+  ve=vector<estadogeneral> ();
   vector<string> vs=leerfichero("comandos.txt");
   vector<vector<pair<int,string> > > vvis=vs2vvis(vs);
   //escribe(vvis);
@@ -951,6 +964,21 @@ void esperartiempo()
   reloj.restart();
 }
 
+string obtenerfechamodificacioncomandos()
+{
+  system("ls --full-time comandos.txt >listaficheros.txt");
+  return leelineafichero("listaficheros.txt");
+}
+
+sf::Font font;
+
+void cargarfont()
+{
+  if (!font.loadFromFile("font.otf")) {
+    cout<<"no carrega la font"<<endl;
+    exit(0);
+  }
+}
 
 int main()
 {
@@ -969,6 +997,8 @@ int main()
   cargardibujos();
   cargargraficossoporte();
   cargaraudio();
+  cargarfont();
+
 
   sf::Sound sound;
 
@@ -980,11 +1010,11 @@ int main()
   //vector<pair<int,string> > listaaudios;
 
   cargarve(ve);//,listaaudios);
-
   if (int(ve.size())<=1) {
     cout<<"Error: no hay frames"<<endl;
     exit(0);
   }
+  string fechamodificacioncomandos=obtenerfechamodificacioncomandos();
   
   //int ilistaaudios=0;
   
@@ -1074,6 +1104,29 @@ int main()
       if (frame==int(ve.size())) {
 	ejecutando=false;
 	frame=ultimoframeparado;
+      }
+    }
+
+    if (not ejecutando) {
+      string nextfechamodificacioncomandos=obtenerfechamodificacioncomandos();
+      if (fechamodificacioncomandos!=nextfechamodificacioncomandos) {
+	window.clear(sf::Color::Black);
+	sf::Text text;
+	text.setString("LOADING comandos.txt");
+	text.setFont(font);
+	text.setColor(sf::Color::Yellow);
+  	text.setOrigin(sf::Vector2f(text.getLocalBounds().width/2.0,text.getLocalBounds().height/2.0));
+	text.setPosition(sf::Vector2f(window.getSize().x/2.0,window.getSize().y/2.0));
+	window.draw(text);
+	window.display();
+	cargarve(ve);
+	if (int(ve.size())<=1) {
+	  cout<<"Error: no hay frames"<<endl;
+	  exit(0);
+	}
+	fechamodificacioncomandos=nextfechamodificacioncomandos;
+	if (frame>int(ve.size())-1) frame=int(ve.size())-1;
+	if (frame<0) frame=0;
       }
     }
 
