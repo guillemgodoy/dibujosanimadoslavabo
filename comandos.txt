@@ -147,9 +147,8 @@ habla person eeooeuuueimmmpeeaaaomooo esquenosepuedenpedirperasalholmo.wav
 
 tiempo 1000
 
-habla kevin buuaa buaf.wav
-
-habla person cuaaandoooeeentreeeeeneeellaaavaaabo cuandoentreenellavabo.wav
+habla kevin buaa buaf.wav
+habla person cuaandooeeentreeeeneeellaavaabo cuandoentreenellavabo.wav
 
 
 //muevecamara 400 300 400 300 500
