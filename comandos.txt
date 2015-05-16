@@ -145,6 +145,13 @@ habla kevin eaeaooeeaaaoooooo tehasquedadodescansandono.wav
 
 habla person eeooeuuueimmmpeeaaaomooo esquenosepuedenpedirperasalholmo.wav
 
+tiempo 1000
+
+habla kevin buuaaf buaf.wav
+
+habla person cuaaandoooeeentreeeeeneeellaaavaaabo cuandoentreenellavabo.wav
+
+
 //muevecamara 400 300 400 300 500
 
 
