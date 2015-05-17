@@ -4,7 +4,7 @@ ventana 'ancho' 'alto'
 fps 'framespersecond'
 coloca 'idpersonaje' 'xfin' 'yfin'
 centra 'idpersonaje' 'xfin' 'yfin'
-escala 'idpersonaje' 'xfin' 'yfin'
+escala 'idpersonaje' 'xfin' 'yfin' (porcentaje?)
 elimina 'idpersonaje'
 habla 'idpersonaje' 'frase' ('tiempo'||'ficheroaudio')
 letras listaletras
