@@ -247,7 +247,7 @@ tiempo 200
 
 forma person cejasperson admirado
 
-habla kevin eaeaooeeaaaoooooo tehasquedadodescansandono.wav
+habla kevin eaeadoodeeaasaaoonooooooooo tehasquedadodescansandono.wav
 
 tiempo 1000
 
@@ -284,7 +284,17 @@ habla person ymeeqeeeaoooooagusto ymehequedadoagusto.wav
 tiempo 1000
 
 
+
+// PARTE GUILLE
 //habla person cuaandooeeentreeeeneeellaavaabo cuandoentreenellavabo.wav
+
+habla person esenooooosepuedenpedirmmmmmmmmpeerraasalooolmooooooooo esquenosepuedenpedirperasalholmo.wav
+
+tiempo 1000
+
+habla kevin buaa buaf.wav
+habla person cuandoooentrenelaavaaboooooooooo cuandoentreenellavabo.wav
+
 
 
 //muevecamara 400 300 400 300 500
