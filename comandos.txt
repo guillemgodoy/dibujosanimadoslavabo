@@ -141,14 +141,14 @@ tiempo 1000
 
 
 
-habla kevin eaeaooeeaaaoooooo tehasquedadodescansandono.wav
+habla kevin eaeadoodeeaasaaoonooooooooo tehasquedadodescansandono.wav
 
-habla person eeooeuuueimmmpeeaaaomooo esquenosepuedenpedirperasalholmo.wav
+habla person esenooooosepuedenpedirmmmmmmmmpeerraasalooolmooooooooo esquenosepuedenpedirperasalholmo.wav
 
 tiempo 1000
 
 habla kevin buaa buaf.wav
-habla person cuaandooeeentreeeeneeellaavaabo cuandoentreenellavabo.wav
+habla person cuandoooentrenelaavaaboooooooooo cuandoentreenellavabo.wav
 
 
 //muevecamara 400 300 400 300 500
