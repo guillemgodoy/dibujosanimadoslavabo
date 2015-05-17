@@ -966,8 +966,12 @@ void esperartiempo()
 
 string obtenerfechamodificacioncomandos()
 {
-  system("ls --full-time comandos.txt >listaficheros.txt");
-  return leelineafichero("listaficheros.txt");
+#ifdef __APPLE__
+  system("ls -lT comandos.txt >listaficheros.txt");
+#elif __linux
+    system("ls --full-time comandos.txt >listaficheros.txt");
+#endif
+    return leelineafichero("listaficheros.txt");
 }
 
 sf::Font font;

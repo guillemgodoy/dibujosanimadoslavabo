@@ -260,18 +260,19 @@ habla kevin quetehaspetaoquenoveas quetehaspetaoquenoveas.wav
 
 forma person cejasperson oneup
 
-habla kevin vamosreconocelo vamosreconocelo.wav
+habla kevin vamoosreconocelooo vamosreconocelo.wav
 
 forma friend cejasfriend enojado
+forma kevin bocakevin m
 
 tiempo 300
 
-habla person loreconozco loreconozco.wav
+habla person loooreecoonoco loreconozco.wav
 
 forma friend cejasfriend admirado
 forma person cejasperson enojado
 
-habla person ymehequedadoagusto ymehequedadoagusto.wav
+habla person ymeeqeeeaoooooagusto ymehequedadoagusto.wav
 
 
 
