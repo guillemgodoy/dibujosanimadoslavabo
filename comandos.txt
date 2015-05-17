@@ -139,16 +139,151 @@ coloca person 800 200
 
 tiempo 1000
 
+habla kevin mmmmm snif.wav
+forma kevin narizkevin respira 
+tiempo 200
+forma kevin narizkevin normal
+tiempo 200
+habla kevin mmmmm snif.wav
+forma kevin narizkevin respira
+tiempo 200
+forma kevin narizkevin normal
+
+forma friend ojosfriend izquierda
+
+habla kevin buaa buaf.wav
+
+forma kevin ojoskevin derecha
+forma kevin brazoizquierda palma
+forma kevin brazoderecha palma
+
+habla kevin peroqueeseseolor peroqueeseseolor.wav
+forma kevin brazoderecha normal
+forma kevin brazoizquierda normal
+
+habla kevin mmmmm snif.wav
+forma kevin narizkevin respira 
+tiempo 200
+forma kevin narizkevin normal
+tiempo 200
+habla kevin mmmmm snif.wav
+forma kevin narizkevin respira
+tiempo 200
+forma kevin narizkevin normal
+
+habla kevin peroqueascoostia peroqueascoostia.wav
+tiempo 100
 
 
-habla kevin eaeaooeeaaaoooooo tehasquedadodescansandono.wav
+forma kevin brazoizquierda palma
+forma kevin brazoderecha palma
 
-habla person eeooeuuueimmmpeeaaaomooo esquenosepuedenpedirperasalholmo.wav
+
+
+habla kevin peroquiensehayufao peroquiensehayufao.wav
+tiempo 200
+
+habla kevin joder joder.wav
+forma kevin ojoskevin izquierda
+habla kevin peroquemalhuele peroquemalhuele.wav
+
+forma kevin brazoderecha normal
+forma kevin brazoizquierda normal
+
+tiempo 300
+forma kevin ojoskevin derecha
+habla kevin poraquihayalguienqueestapodridopordentro poraquihayalguienqueestapodridopordentro.wav
+
+forma kevin ojoskevin izquierda
+forma friend ojosfriend derecha
+
+habla kevin mmmmm snif.wav
+forma kevin narizkevin respira 
+tiempo 200
+forma kevin narizkevin normal
+tiempo 200
+habla kevin mmmmm snif.wav
+forma kevin narizkevin respira
+tiempo 200
+forma kevin narizkevin normal
+
+habla kevin seaquienseasetienequehaberzambutido seaquienseasetienequehaberzambutido.wav
+
+forma kevin ojoskevin derecha
+
+habla kevin unaslentejasconchorizo unaslentejasconchorizo.wav
+
+forma kevin ojoskevin izquierda
+forma kevin brazoizquierda palma
+
+habla kevin porlomenos porlomenos.wav
+forma friend ojosfriend izquierda
+
+forma kevin ojoskevin derecha
+forma friend ojosfriend derecha
 
 tiempo 1000
 
-habla kevin buaa buaf.wav
-habla person cuaandooeeentreeeeneeellaavaabo cuandoentreenellavabo.wav
+forma kevin brazoizquierda indica
+forma kevin ojoskevin izquierda
+forma friend cejasfriend oneup
+habla kevin miiraaa mira.wav
+forma friend ojosfriend izquierda
+
+tiempo 100
+
+habla kevin seguroquehasidoesetio seguroquehasidoesetio.wav
+
+tiempo 300
+
+habla kevin eeeeeetuuuu etu.wav
+tiempo 100
+forma person ojosperson derecha
+forma person brazoderecha yo
+forma person cejasperson oneup
+
+habla kevin ssiiissiiituuu sisitu.wav
+tiempo 200
+
+forma person cejasperson admirado
+
+habla kevin eaeaooeeaaaoooooo tehasquedadodescansandono.wav
+
+tiempo 1000
+
+habla kevin veeengaaa venga.wav
+forma friend cejasfriend oneup
+habla kevin nopongasesacaradeinocenton nopongasesacaradeinocenton.wav
+habla kevin quesabemosloquehashecho quesabemosloquehashecho.wav
+
+habla kevin quetehaspetaoquenoveas quetehaspetaoquenoveas.wav
+
+forma person cejasperson oneup
+
+habla kevin vamosreconocelo vamosreconocelo.wav
+
+forma friend cejasfriend enojado
+
+tiempo 300
+
+habla person loreconozco loreconozco.wav
+
+forma friend cejasfriend admirado
+forma person cejasperson enojado
+
+habla person ymehequedadoagusto ymehequedadoagusto.wav
+
+
+
+
+
+//habla person eeooeuuueimmmpeeaaaomooo esquenosepuedenpedirperasalholmo.wav
+
+
+tiempo 1000
+
+
+//habla person cuaandooeeentreeeeneeellaavaabo cuandoentreenellavabo.wav
 
 
 //muevecamara 400 300 400 300 500
