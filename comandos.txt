@@ -147,15 +147,14 @@ escala person 45 45
 
 tiempo 1000
 
-habla kevin mmmmm snif.wav
 forma kevin narizkevin respira 
-tiempo 200
-forma kevin narizkevin normal
-tiempo 200
 habla kevin mmmmm snif.wav
-forma kevin narizkevin respira
-tiempo 200
 forma kevin narizkevin normal
+tiempo 200
+forma kevin narizkevin respira
+habla kevin mmmmm snif.wav
+forma kevin narizkevin normal
+tiempo 200
 
 forma friend ojosfriend izquierda
 
@@ -165,23 +164,22 @@ forma kevin ojoskevin derecha
 forma kevin brazoizquierda palma
 forma kevin brazoderecha palma
 
-habla kevin peroqueeseseolor peroqueeseseolor.wav
+habla kevin mmeroooqeseeseooollooooooooooooooo peroqueeseseolor.wav
 forma kevin brazoderecha normal
 forma kevin brazoizquierda normal
 
 forma friend bocafriend uh
 
-habla kevin mmmmm snif.wav
 forma kevin narizkevin respira 
-tiempo 200
-forma kevin narizkevin normal
-tiempo 200
 habla kevin mmmmm snif.wav
-forma kevin narizkevin respira
-tiempo 200
 forma kevin narizkevin normal
+tiempo 200
+forma kevin narizkevin respira
+habla kevin mmmmm snif.wav
+forma kevin narizkevin normal
+tiempo 200
 
-habla kevin peroqueascoostia peroqueascoostia.wav
+habla kevin peeroooqeaaasssoooooooooossttiiaaaaaaa peroqueascoostia.wav
 tiempo 100
 
 
@@ -191,14 +189,14 @@ forma kevin brazoderecha palma
 
 
 
-habla kevin peroquiensehayufao peroquiensehayufao.wav
+habla kevin peerooooottiieecaaauuuuffaaaaaoooooooooo  peroquiensehayufao.wav
 tiempo 200
 
 forma friend bocafriend puaj
 
-habla kevin joder joder.wav
+habla kevin oooooiieeerrrrrr joder.wav
 forma kevin ojoskevin izquierda
-habla kevin peroquemalhuele peroquemalhuele.wav
+habla kevin mmeeooooeemmaaalluueeelleeeeeeee    peroquemalhuele.wav
 
 forma friend bocafriend f
 
@@ -207,24 +205,24 @@ forma kevin brazoizquierda normal
 
 tiempo 300
 forma kevin ojoskevin derecha
-habla kevin poraquihayalguienqueestapodridopordentro poraquihayalguienqueestapodridopordentro.wav
+habla kevin ppoooorraaaiiiiiaaaiiaallgggiieenneessttaaaapppoooddrriiddooooppooorrddeeennttoooooooooooo  poraquihayalguienqueestapodridopordentro.wav
 
 
 
 forma kevin ojoskevin izquierda
 forma friend ojosfriend derecha
 
-habla kevin mmmmm snif.wav
+tiempo 200
 forma kevin narizkevin respira 
-tiempo 200
-forma kevin narizkevin normal
-tiempo 200
 habla kevin mmmmm snif.wav
-forma kevin narizkevin respira
-tiempo 200
 forma kevin narizkevin normal
+tiempo 200
+forma kevin narizkevin respira
+habla kevin mmmmm snif.wav
+forma kevin narizkevin normal
+tiempo 200
 
-habla kevin seaquienseasetienequehaberzambutido seaquienseasetienequehaberzambutido.wav
+habla kevin sseeaaiiiiiieennsseeaasseettiieenneeeeeaabbeerrzzaaaammuuuuttiiooooooooo seaquienseasetienequehaberzambutido.wav
 
 forma kevin ojoskevin derecha
 
