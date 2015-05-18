@@ -138,6 +138,16 @@ int posicionbarra(string s)
   return 0;
 }
 
+sf::Font font;
+
+void cargarfont()
+{
+  if (!font.loadFromFile("font.otf")) {
+    cout<<"no carrega la font"<<endl;
+    exit(0);
+  }
+}
+
 void cargargraficossoporte()
 {
   system("ls graficossoporte/* >listaficheros.txt");
@@ -872,6 +882,10 @@ float ladoboton;
 
 void dibujarestadogeneral(estadogeneral &e,int frame,int totalframes)
 {
+  //static int ultimoframe=-1;
+  //if (frame==ultimoframe) return;
+  //ultimoframe=frame;
+
   window.clear(sf::Color::Black);
   //rectfill(pantalla,0,0,1000,700,makecol(30,0,0));
   vector<plandibujo> vp=transformaaplandibujo(e);
@@ -916,6 +930,17 @@ void dibujarestadogeneral(estadogeneral &e,int frame,int totalframes)
     info.b.setPosition(rect.left,rect.top);
     info.b.setScale(float(rect.width)/info.width,float(rect.height)/info.height);
     window.draw(info.b);
+  }
+
+  if (e.accionaudio==1 or e.accionaudio==2) {
+    sf::Text text;
+    text.setString(e.nombreaudio);
+    text.setFont(font);
+    text.setColor(sf::Color::Yellow);
+    text.setOrigin(sf::Vector2f(text.getLocalBounds().width/2.0,text.getLocalBounds().height/2.0));
+    text.setScale(sf::Vector2f(float(ladoboton)/text.getLocalBounds().height,float(ladoboton)/text.getLocalBounds().height));
+    text.setPosition(sf::Vector2f(window.getSize().x/2.0,window.getSize().y-5*ladoboton));
+    window.draw(text);
   }
 
   sf::View view;
@@ -975,16 +1000,6 @@ string obtenerfechamodificacioncomandos()
     system("ls --full-time comandos.txt >listaficheros.txt");
 #endif
     return leelineafichero("listaficheros.txt");
-}
-
-sf::Font font;
-
-void cargarfont()
-{
-  if (!font.loadFromFile("font.otf")) {
-    cout<<"no carrega la font"<<endl;
-    exit(0);
-  }
 }
 
 int main()
