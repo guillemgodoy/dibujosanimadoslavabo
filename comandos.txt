@@ -222,24 +222,32 @@ habla kevin mmmmm snif.wav
 forma kevin narizkevin normal
 tiempo 200
 
-habla kevin sseeaaiiiiiieennsseeaasseettiieenneeeeeaabbeerrzzaaaammuuuuttiiooooooooo seaquienseasetienequehaberzambutido.wav
+habla kevin sseeaaaaiiiiieeeesseeaaaasseettiieenneeaabbeerrzzaaaammuuuuttiiooooooooo seaquienseasetienequehaberzambutido.wav
 
 forma kevin ojoskevin derecha
 
-habla kevin unaslentejasconchorizo unaslentejasconchorizo.wav
+habla kevin uuuuaasslleeetteeaassccoooottooooooorriittoooooooo  unaslentejasconchorizo.wav
 
 forma friend bocafriend puajdos
 
 forma kevin ojoskevin izquierda
 forma kevin brazoizquierda palma
 
-habla kevin porlomenos porlomenos.wav
+habla kevin mooollooommeennoooocccmmmm porlomenos.wav
 forma friend ojosfriend izquierda
 
-
+tiempo 1000
 
 forma kevin ojoskevin derecha
+
+tiempo 1000
+
+forma kevin ojoskevin izquierda
 forma friend ojosfriend derecha
+
+tiempo 1000
+
+forma kevin bocakevin a
 
 tiempo 1000
 
@@ -247,43 +255,55 @@ forma kevin brazoizquierda indica
 forma kevin ojoskevin izquierda
 forma friend cejasfriend oneup
 habla kevin miiraaa mira.wav
+
+tiempo 1000
+
 forma friend ojosfriend izquierda
 forma friend bocafriend uh
 tiempo 100
 
-habla kevin seguroquehasidoesetio seguroquehasidoesetio.wav
+habla kevin sseeeeuuuoooooeeeaassiittoooeeesseettiiooooooooo seguroquehasidoesetio.wav
 
 tiempo 300
 camara 700 280 300 169
 tiempo 1000
 forma friend bocafriend normal
 camara 175 360 350 197
-habla kevin eeeeeetuuuu etu.wav
+habla kevin eeettuuuuuu etu.wav
 tiempo 1000
 camara 700 280 300 169
+tiempo 500
 forma person ojosperson derecha
 forma person brazoderecha yo
 forma person cejasperson oneup
 tiempo 1000
 camara 175 360 350 197
-habla kevin ssiiissiiituuu sisitu.wav
+habla kevin ssiissiiittuuuuuuuu sisitu.wav
 tiempo 200
 camara 700 280 300 169
 forma person cejasperson admirado
 
 habla kevin eaeadoodeeaasaaoonooooooooo tehasquedadodescansandono.wav
 
+
+forma person bocaperson o
+
 tiempo 1000
+
 forma kevin brazoizquierda normal
 habla kevin veeengaaa venga.wav
 forma friend cejasfriend oneup
 habla kevin nopongasesacaradeinocenton nopongasesacaradeinocenton.wav
 forma person cejasperson oneup
+forma person bocaperson u
+
 habla kevin quesabemosloquehashecho quesabemosloquehashecho.wav
+
 
 habla kevin quetehaspetaoquenoveas quetehaspetaoquenoveas.wav
 
 forma person cejasperson enojado
+forma person bocaperson m
 
 habla kevin vamoosreconocelooo vamosreconocelo.wav
 
@@ -327,7 +347,7 @@ forma person brazoderecha normal
 habla person estoesunlavabopublico estoesunlavabopublico.wav
 forma kevin bocakevin f
 forma friend bocafriend f
-//habla person mmmmmmmmmmmmmmmmmmmm toiletflush.wav
+habla person mmmmmmmmmmmmmmmmmmmm toiletflush.wav
 
 habla person aquivienelagenteahaceresto aquivienelagenteahaceresto.wav
 
