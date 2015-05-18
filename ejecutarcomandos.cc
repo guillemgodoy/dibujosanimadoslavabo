@@ -905,6 +905,9 @@ void dibujarestadogeneral(estadogeneral &e,int frame,int totalframes)
   boton2rect["indicador"]=sf::IntRect(float(totalframes-1-frame)/(totalframes-1)*9*ladoboton+
 				      float(frame)/(totalframes-1)*(window.getSize().x-ladoboton)-ladoboton/10,
 				      window.getSize().y-2*ladoboton,ladoboton/5,ladoboton);
+  boton2rect["slow"]=sf::IntRect(ladoboton,window.getSize().y-4*ladoboton,ladoboton,ladoboton);
+  boton2rect["slowstop"]=sf::IntRect(3*ladoboton,window.getSize().y-4*ladoboton,ladoboton,ladoboton);
+  boton2rect["slowrev"]=sf::IntRect(5*ladoboton,window.getSize().y-4*ladoboton,ladoboton,ladoboton);
 
   for (map<string,sf::IntRect>::iterator it=boton2rect.begin();it!=boton2rect.end();it++) {
     string nombre=it->first;
@@ -1024,8 +1027,10 @@ int main()
   
   iniciartiempo();
 
-  int ultimoframeparado=0;
-  bool ejecutando=false;
+  int framestop=0;
+  string accion="stop";
+  int faseaccion=0;
+  int periodoaccion=2;
   int frame=0;
   //for (int i=0;i<int(ve.size()) /*&& !key[KEY_ESC]*/;i++) {
   for (;;) {
@@ -1048,41 +1053,73 @@ int main()
 	  int x=event.mouseButton.x;
 	  int y=event.mouseButton.y;
 	  if (boton2rect["play"].contains(x,y)) {
-	    ejecutando=true;
+	    accion="play";
+	    sound.stop();
 	    if (ve[frame].accionaudio==2) {
 	      sf::SoundBuffer &soundbuffer=obteneraudiobuffer(ve[frame].nombreaudio);
 	      sound.setBuffer(soundbuffer);
 	      sound.setPlayingOffset(ve[frame].tantoaudio*soundbuffer.getDuration());
+	      sound.setPitch(1.0);
 	      sound.play();
 	    }
+	  } else if (boton2rect["slow"].contains(x,y) or boton2rect["slowstop"].contains(x,y)) {
+	    accion=boton2rect["slow"].contains(x,y)?"slow":"slowstop";
+	    faseaccion=0;
+	    sound.stop();
+	    if (ve[frame].accionaudio==2) {
+	      sf::SoundBuffer &soundbuffer=obteneraudiobuffer(ve[frame].nombreaudio);
+	      sound.setBuffer(soundbuffer);
+	      sound.setPlayingOffset(ve[frame].tantoaudio*soundbuffer.getDuration());
+	      sound.setPitch(1.0/periodoaccion);
+	      sound.play();
+	    }
+	  } else if (boton2rect["slowrev"].contains(x,y)) {
+	    accion="slowrev";
+	    framestop=frame;
+	    faseaccion=0;
+	    sound.stop();
 	  } else if (boton2rect["pause"].contains(x,y)) {
-	    ejecutando=false;
-	    ultimoframeparado=frame;
+	    accion="stop";
+	    framestop=frame;
 	    sound.stop();
 	  } else if (boton2rect["stop"].contains(x,y)) {
-	    ejecutando=false;
-	    frame=ultimoframeparado;
+	    accion="stop";
+	    frame=framestop;
 	    sound.stop();
 	  } else if (boton2rect["rev"].contains(x,y)) {
-	    ejecutando=false;
-	    ultimoframeparado=0;
+	    accion="stop";
+	    framestop=0;
 	    frame=0;
 	    sound.stop();
 	  } else if (boton2rect["barra"].contains(x,y)) {
 	    frame=float(x-boton2rect["barra"].left)/boton2rect["barra"].width*(int(ve.size())-1);
 	    if (frame>int(ve.size())-1) frame=int(ve.size())-1;
 	    if (frame<0) frame=0;
-	    ultimoframeparado=frame;
+	    framestop=frame;
 	    sound.stop();
-	    if (ejecutando and ve[frame].accionaudio==2) {
+	    if (accion=="play" and ve[frame].accionaudio==2) {
 	      sf::SoundBuffer &soundbuffer=obteneraudiobuffer(ve[frame].nombreaudio);
 	      sound.setBuffer(soundbuffer);
 	      sound.setPlayingOffset(ve[frame].tantoaudio*soundbuffer.getDuration());
+	      sound.setPitch(1.0);
 	      sound.play();
 	    }
 	  }
 	}
 	break;
+
+      case sf::Event::MouseButtonReleased:
+	if (accion=="slow" or accion=="slowrev") {
+	  accion="stop";
+	  framestop=frame;
+	  sound.stop();
+	} else if (accion=="slowstop") {
+	  accion="stop";
+	  frame=framestop;
+	  sound.stop();
+	}
+	break;
+
 
       default:
 	break;
@@ -1094,24 +1131,55 @@ int main()
       sound.play();
     }
     */
-    if (ejecutando) {
+    if (accion=="play") {
       if (ve[frame].accionaudio==1) {
 	sound.stop();
 	sound.setBuffer(obteneraudiobuffer(ve[frame].nombreaudio));
+	sound.setPitch(1.0);
+	sound.play();
+      }
+    } else if (accion=="slow" or accion=="slowstop") {
+      if (faseaccion==0 and ve[frame].accionaudio==1) {
+	sound.stop();
+	sound.setBuffer(obteneraudiobuffer(ve[frame].nombreaudio));
+	sound.setPitch(1.0/periodoaccion);
 	sound.play();
       }
     }
+
     dibujarestadogeneral(ve[frame],frame,int(ve.size()));
 
-    if (ejecutando) {
+    if (accion=="play") {
       frame++;
       if (frame==int(ve.size())) {
-	ejecutando=false;
-	frame=ultimoframeparado;
+	accion="stop";
+	frame=framestop;
+	sound.stop();
       }
-    }
-
-    if (not ejecutando) {
+    } else if (accion=="slow" or accion=="slowstop") {
+      faseaccion++;
+      if (faseaccion==periodoaccion) {
+	faseaccion=0;
+	frame++;
+	if (frame==int(ve.size())) {
+	  accion="stop";
+	  frame=framestop;
+	  sound.stop();
+	}
+      }
+    } else if (accion=="slowrev") {
+      faseaccion++;
+      if (faseaccion==periodoaccion) {
+	faseaccion=0;
+	frame--;
+	framestop=frame;
+	if (frame<0) {
+	  accion="stop";
+	  frame=framestop=0;
+	  sound.stop();
+	}
+      }
+    } else if (accion=="stop") {
       string nextfechamodificacioncomandos=obtenerfechamodificacioncomandos();
       if (fechamodificacioncomandos!=nextfechamodificacioncomandos) {
 	window.clear(sf::Color::Black);
