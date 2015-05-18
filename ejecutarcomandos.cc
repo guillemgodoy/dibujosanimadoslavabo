@@ -417,7 +417,13 @@ void transformainstruccion(int linea,vector<pair<int,string> > &vis,vector<vecto
 	! esnatural(vis[3].second) || ! esnatural(vis[4].second) || ! esnatural(vis[5].second))
       morir(linea,columna,vis[0].second+" requiere 'xini' 'yini' 'ancho' 'alto' 'tiempo'.");
     push_back_instruccion(vis,vvs);
+    /*
   } else if (vis[0].second=="luz") {
+    if (int(vis.size())!=2 || ! esnatural(vis[1].second) || mystoi(vis[1].second)>=256)
+      morir(linea,columna,vis[0].second+" requiere 'iluminacion<256'.");
+    push_back_instruccion(vis,vvs);
+    */
+  } else if (vis[0].second=="luz") {//cambiar a mueveluz
     if (int(vis.size())!=3 || ! esnatural(vis[1].second) ||
 	mystoi(vis[1].second)>=256 || ! esnatural(vis[2].second))
       morir(linea,columna,vis[0].second+" requiere 'iluminacionfinal<256' 'tiempo'.");
@@ -474,7 +480,8 @@ vector<vector<string> > transformainstrucciones(vector<vector<pair<int,string> >
 
 void transformaaframes(string &s)
 {
-  s=itos(mystoi(s)/framespersecond);
+  // ERROR ARREGLADO. ANTES ERA: s=itos(mystoi(s)/framespersecond);
+  s=itos(mystoi(s)*framespersecond/1000);
 }
 
 void transformaaframes(vector<string> &vs)
@@ -483,7 +490,7 @@ void transformaaframes(vector<string> &vs)
   else if (vs[0]=="mueve" || vs[0]=="mueveconcamara") transformaaframes(vs[4]);
   else if (vs[0]=="muevecamara") transformaaframes(vs[5]);
   else if (vs[0]=="tiempo") transformaaframes(vs[1]);
-  else if (vs[0]=="luz") transformaaframes(vs[2]);
+  else if (vs[0]=="mueveluz") transformaaframes(vs[2]);
 }
 
 void transformaaframes(vector<vector<string> > &vvs)
@@ -606,6 +613,7 @@ void transformaaestados(vector<string> &vs,vector<estadogeneral> &ve,estadogener
       //listaaudios.push_back(pair<int,string> (int(ve.size()),vs[3]));
     }
     string &forma=p.caracteristica2forma[p.prefijoboca];
+    string formaanterior=forma;
     if (forma=="" || int(forma.size())>1) forma="a";
     char &c=forma[int(forma.size())-1];
     if (hayaudio)
@@ -639,6 +647,7 @@ void transformaaestados(vector<string> &vs,vector<estadogeneral> &ve,estadogener
       if (hayaudio)
 	e.accionaudio=0;
     }
+    forma=formaanterior;
   } else if (vs[0]=="mueve" || vs[0]=="mueveconcamara") {
     estadopersonaje &p=e.p[vs[1]];
     int &x=p.x;
@@ -729,6 +738,8 @@ void transformaaestados(vector<string> &vs,vector<estadogeneral> &ve,estadogener
     estadopersonaje &p=e.p[vs[1]];
     p.prefijoboca=vs[2];
   } else if (vs[0]=="luz") {
+    e.luz=mystoi(vs[1]);
+  } else if (vs[0]=="mueveluz") {
     int luzini=e.luz;
     int luzfin=mystoi(vs[1]);
     int numframes=mystoi(vs[2]);
@@ -907,6 +918,7 @@ void dibujarestadogeneral(estadogeneral &e,int frame,int totalframes)
     info.b.setPosition(xdesp*xescala,ydesp*yescala);
     //d.setPosition(p.x,p.y);
     info.b.setScale(xescala*p.xescala/100.0,yescala*p.yescala/100.0);
+    //info.b.setFillColor(sf::Color::White);
     window.draw(info.b);
   }
 
