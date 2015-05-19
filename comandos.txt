@@ -316,7 +316,7 @@ forma person brazoderecha normal
 tiempo 300
 mueveconcamara person 300 270 1000
 
-habla person loooreecoonoco loreconozco.wav
+habla person lllooorreeeccoooonnoozzccoooooooooooooo loreconozco.wav
 
 forma friend cejasfriend admirado
 forma person cejasperson enojado
@@ -324,30 +324,30 @@ forma friend bocafriend puaj
 forma kevin bocakevin a
 
 
-habla person ymeeqeeeaoooooagusto ymehequedadoagusto.wav
+habla person immeecceeddaaddooooooaagguuuuttooooooooo ymehequedadoagusto.wav
 tiempo 500
-habla person yynnootteennggooppoorrqqeeeeddaarrlleeeexxpplliiccaacciioonneessaannaaddiiee ynotengoporquedarleexplicacionesanadie.wav
-habla person ymenosaunsociopata ymenosaunsociopata.wav
+habla person yynnootteennggooppoorreeddaarrlleepplliiaacciiooooonneessaannaaddiieeeeeeeee ynotengoporquedarleexplicacionesanadie.wav
+habla person iimmeeoooossssaauuuuttooiiooooppaattaaaaaa ymenosaunsociopata.wav
 
 forma friend bocafriend oh
 forma friend cejasfriend enojado
 forma kevin bocakevin o
 
-habla kevin peeerooooqueeuuuueevoooos peroquehuevos.wav
+habla kevin ppeeooooooeeeuuuueeeeooooosssssssssss peroquehuevos.wav
 forma friend cejasfriend oneup
 forma friend bocafriend mh
 
-habla kevin eenciimaalooooreeeeconooooceeee encimaloreconoce.wav
+habla kevin eettiimmaallooootteeoonnooootteeeeeeeeeee encimaloreconoce.wav
 
-habla kevin yyyseeesiiieeenteoooorguuulooosooo ysesienteorgulloso.wav
+habla kevin iitteettiieetteeoooouuuuoooooossoooooooooooooo ysesienteorgulloso.wav
 forma person brazoderecha palma
 forma person brazoizquierda palma
 
-habla person peroesquenohasvistodondeestamos peroesquenohasvistodondeestamos.wav
+habla person mmeettooooooooeeeennooooaammiittoottoooooooooddeettaammoooooooooosssssss peroesquenohasvistodondeestamos.wav
 muevecamara 640 360 1280 720 1000
 forma person brazoizquierda indica
 forma person brazoderecha normal
-habla person estoesunlavabopublico estoesunlavabopublico.wav
+habla person eettooeessssssuuuuuuuuttaammaammoooooooooooommuuuuiiiiooooooo estoesunlavabopublico.wav
 forma kevin bocakevin f
 forma friend bocafriend f
 habla person mmmmmmmmmmmmmmmmmmmm toilet_flush_automatic.wav
