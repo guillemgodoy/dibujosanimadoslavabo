@@ -70,14 +70,14 @@ forma person narizperson normal
 forma friend bocafriend normal
 forma kevin bocakevin normal
 forma person bocaperson normal
-forma fondo fondo normal
+forma fondo fondo normal2
 
 prefijoboca kevin bocakevin
 prefijoboca person bocaperson
 
 // gafas orejas
 
-profundidad fondo fondonormal -10
+profundidad fondo fondonormal2 -10
 
 profundidad friend cuello 10
 profundidad friend zapatosfriend 20
@@ -137,7 +137,7 @@ camara 175 360 350 197
 
 coloca friend 100 270
 coloca kevin 200 270
-coloca person 800 200
+coloca person 800 240
 
 escala friend 45 45 
 escala kevin 45 45
@@ -265,13 +265,13 @@ tiempo 100
 habla kevin sseeeeuuuoooooeeeaassiittoooeeesseettiiooooooooo seguroquehasidoesetio.wav
 
 tiempo 300
-camara 700 280 300 169
+camara 700 320 300 169
 tiempo 1000
 forma friend bocafriend normal
 camara 175 360 350 197
 habla kevin eeettuuuuuu etu.wav
 tiempo 1000
-camara 700 280 300 169
+camara 700 320 300 169
 tiempo 500
 forma person ojosperson derecha
 forma person brazoderecha yo
@@ -280,7 +280,7 @@ tiempo 1000
 camara 175 360 350 197
 habla kevin ssiissiiittuuuuuuuu sisitu.wav
 tiempo 200
-camara 700 280 300 169
+camara 700 320 300 169
 forma person cejasperson admirado
 
 habla kevin eaeadoodeeaasaaoonooooooooo tehasquedadodescansandono.wav
