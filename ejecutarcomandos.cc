@@ -417,13 +417,11 @@ void transformainstruccion(int linea,vector<pair<int,string> > &vis,vector<vecto
 	! esnatural(vis[3].second) || ! esnatural(vis[4].second) || ! esnatural(vis[5].second))
       morir(linea,columna,vis[0].second+" requiere 'xini' 'yini' 'ancho' 'alto' 'tiempo'.");
     push_back_instruccion(vis,vvs);
-    /*
   } else if (vis[0].second=="luz") {
     if (int(vis.size())!=2 || ! esnatural(vis[1].second) || mystoi(vis[1].second)>=256)
       morir(linea,columna,vis[0].second+" requiere 'iluminacion<256'.");
     push_back_instruccion(vis,vvs);
-    */
-  } else if (vis[0].second=="luz") {//cambiar a mueveluz
+  } else if (vis[0].second=="mueveluz") {//cambiar a mueveluz
     if (int(vis.size())!=3 || ! esnatural(vis[1].second) ||
 	mystoi(vis[1].second)>=256 || ! esnatural(vis[2].second))
       morir(linea,columna,vis[0].second+" requiere 'iluminacionfinal<256' 'tiempo'.");
@@ -918,7 +916,7 @@ void dibujarestadogeneral(estadogeneral &e,int frame,int totalframes)
     info.b.setPosition(xdesp*xescala,ydesp*yescala);
     //d.setPosition(p.x,p.y);
     info.b.setScale(xescala*p.xescala/100.0,yescala*p.yescala/100.0);
-    //info.b.setFillColor(sf::Color::White);
+    info.b.setColor(sf::Color(e.luz,e.luz,e.luz,255));
     window.draw(info.b);
   }
 

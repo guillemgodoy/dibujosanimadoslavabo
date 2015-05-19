@@ -145,6 +145,9 @@ escala person 45 45
 
 //camara 3840 2160 7680 4320
 
+luz 0
+mueveluz 255 2000
+
 tiempo 1000
 
 forma kevin narizkevin respira 
@@ -453,6 +456,11 @@ habla kevin nosiesquealfinalvamosatenerqueirnosaotrositioporsuculpa nosiesquealf
 forma friend bocafriend triste
 forma kevin bocakevin f
 
+
+mueveluz 0 2000
+
+tiempo 1000
+
 //camara 00 200 1280 720
 
 
@@ -462,13 +470,13 @@ forma kevin bocakevin f
 //habla person eeooeuuueimmmpeeaaaomooo esquenosepuedenpedirperasalholmo.wav
 
 
-tiempo 1000
+//tiempo 1000
 
 
 
 // PARTE GUILLE
 
-tiempo 1000
+//tiempo 1000
 
 //habla kevin buaa buaf.wav
 //habla person cuandoooentrenelaavaaboooooooooo cuandoentreenellavabo.wav
@@ -525,5 +533,5 @@ habla nuria aoaoem esquenosepuedenpedirperasalholmo.wav
 tiempo 500
 //fininstantaneo
 habla nuria astalaproximam 2000
-luz 100 1000
+
 finobviar
