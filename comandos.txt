@@ -350,7 +350,10 @@ forma person brazoderecha normal
 habla person eettooeessssssuuuuuuuuttaammaammoooooooooooommuuuuiiiiooooooo estoesunlavabopublico.wav
 forma kevin bocakevin f
 forma friend bocafriend f
+
+
 habla person mmmmmmmmmmmmmmmmmmmm toilet_flush_automatic.wav
+
 
 habla person aquivienelagenteahaceresto aquivienelagenteahaceresto.wav
 
