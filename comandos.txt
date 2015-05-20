@@ -355,39 +355,41 @@ forma friend bocafriend f
 habla person mmmmmmmmmmmmmmmmmmmm toilet_flush_automatic.wav
 
 
-habla person aquivienelagenteahaceresto aquivienelagenteahaceresto.wav
+habla person aaiiiiiiiimmiieetteettaaeetteeaacceerreessttoooooooooo aquivienelagenteahaceresto.wav
 
 forma person brazoderecha palma
 forma person brazoizquierda palma
 
-habla person ymilcosasmasquenotienenporqueserdelagradodenadie ymilcosasmasquenotienenporqueserdelagradodenadie.wav
+habla person iimmiittccoooossaassmmaasssssssseeeennnnooootteenneennppooorreesseeerrddeellaarraaddooooddeennaaddiieeeeeeeeee  ymilcosasmasquenotienenporqueserdelagradodenadie.wav
 
-habla person estesitioestaparaesto estesitioestaparaesto.wav
+habla person eetteeiittiioooooooooeessttaappaattaaeeesssttooooooooooo estesitioestaparaesto.wav
 
 forma person brazoizquierda normal
 forma person brazoderecha normal
 
 muevecamara 200 360 350 197 1000
 
-habla kevin vvaa va.wav
+habla kevin aaaa va.wav
 //forma friend bocafriend puaj
 forma kevin brazoizquierda palma
-habla kevin estonoesexcusaparadejaresteolordemildemonios estonoesexcusaparadejaresteolordemildemonios.wav
+habla kevin eeeettoooonnooooeesseesssuuuussaaaaaaaappaattaaddeeaarreeettteeeeoolloooooorrddeemmiiddeeeemmooonniiooooooooooooossssss  estonoesexcusaparadejaresteolordemildemonios.wav
 forma friend cejasfriend enojado
 forma friend bocafriend triste
 forma kevin brazoizquierda normal
 tiempo 500
-habla person quenoesexcusa quenoesexcusa.wav
+habla person eeeennoooeesseessssuuuuuussaaaaaaaaaa quenoesexcusa.wav
 
 forma friend bocafriend puaj
 forma kevin bocakevin o
 
-habla person loquenotieneexcusa loquenotieneexcusa.wav
+habla person llooooeeeennoooottiieenneessuuuussaaaaaaaaaa loquenotieneexcusa.wav
 
 forma person brazoizquierda palma
 forma person brazoderecha palma
 
-habla person esquehacenunpardetarados esquehacenunpardetarados.wav
+habla person eeeesssseeaaatteeeennuuppaaaddeeeettaarraaddooooooossss esquehacenunpardetarados.wav
+
+// VOY POR AQUI
 
 habla person plantificadosdentrodeunlavabopublicoycriticandoalosdemas plantificadosdentrodeunlavabopublicoycriticandoalosdemas.wav
 
