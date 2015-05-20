@@ -389,7 +389,7 @@ forma person brazoderecha palma
 
 habla person eeeesssseeaaatteeeennuuppaaaddeeeettaarraaddooooooossss esquehacenunpardetarados.wav
 
-// VOY POR AQUI
+// VOY POR AQUI 
 
 habla person plantificadosdentrodeunlavabopublicoycriticandoalosdemas plantificadosdentrodeunlavabopublicoycriticandoalosdemas.wav
 
