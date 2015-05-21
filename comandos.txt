@@ -268,13 +268,20 @@ tiempo 100
 habla kevin sseeeeuuuoooooeeeaassiittoooeeesseettiiooooooooo seguroquehasidoesetio.wav
 
 tiempo 300
-camara 700 320 300 169
+
+//camara 700 320 300 169
+camara 800 300 300 169
+
+
 tiempo 1000
 forma friend bocafriend normal
 camara 175 360 350 197
 habla kevin eeettuuuuuu etu.wav
 tiempo 1000
-camara 700 320 300 169
+
+//camara 700 320 300 169
+camara 800 300 300 169
+
 tiempo 500
 forma person ojosperson derecha
 forma person brazoderecha yo
@@ -283,7 +290,10 @@ tiempo 1000
 camara 175 360 350 197
 habla kevin ssiissiiittuuuuuuuu sisitu.wav
 tiempo 200
-camara 700 320 300 169
+
+//camara 700 320 300 169
+camara 800 300 300 169
+
 forma person cejasperson admirado
 
 habla kevin eaeadoodeeaasaaoonooooooooo tehasquedadodescansandono.wav
@@ -314,7 +324,18 @@ forma friend cejasfriend enojado
 forma kevin bocakevin m
 forma person brazoderecha normal
 tiempo 300
-mueveconcamara person 300 270 1000
+
+
+
+//mueveconcamara person 300 270 1000
+transicionini desplazamiento
+tiempo 1000
+transicionter desplazamiento
+camara 175 360 350 197
+coloca person 300 270
+transicionfin desplazamiento
+
+
 
 habla person lllooorreeeccoooonnoozzccoooooooooooooo loreconozco.wav
 
@@ -416,14 +437,32 @@ forma friend bocafriend puaj
 
 forma person brazoizquierda normal
 forma person brazoderecha normal
-mueve person 150 300 1000
+
+
+//mueve person 150 300 1000
+//forma friend ojosfriend medio
+//forma kevin ojoskevin medio
+//forma person ojosperson medio
+//habla person iirroooossaauummaaaarreeeeeeeeeeeoooommrreeeeeeeeeee irosaunparquehombre.wav
+//forma person bocaperson m
+//forma person ojosperson derecha
+//mueve person 0 400 1500
+
+transicionini personseva
+tiempo 500
 forma friend ojosfriend medio
 forma kevin ojoskevin medio
 forma person ojosperson medio
 habla person iirroooossaauummaaaarreeeeeeeeeeeoooommrreeeeeeeeeee irosaunparquehombre.wav
 forma person bocaperson m
 forma person ojosperson derecha
-mueve person 0 400 1500
+tiempo 1000
+transicionter personseva
+coloca person 0 400
+transicionfin personseva
+
+
+
 
 forma friend cejasfriend oneup
 forma friend ojosfriend derecha

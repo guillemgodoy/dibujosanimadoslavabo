@@ -25,7 +25,10 @@ const int SCRHEIGHT = 600;
 
 using namespace std;
 
+bool grabando=false;
+int anchowindow,altowindow;
 sf::RenderWindow window;
+sf::RenderTexture renderTexture;
 
 struct infodibujo
 {
@@ -258,6 +261,23 @@ string itos(int x)
   return signo+s;
 }
 
+string itos5(int x)
+{
+  string s(5,'0');
+  int is=4;
+  while (x) {
+    if (is<0) {
+      cout<<"ERROR itos5"<<endl;
+      exit(0);
+    }
+    s[is]=char('0'+x%10);
+    is--;
+    x/=10;
+  }
+  cout<<s<<endl;
+  return s;
+}
+
 bool esnatural(string s)
 {
   if (int(s.size())==0) return false;
@@ -447,7 +467,9 @@ void transformainstruccion(int linea,vector<pair<int,string> > &vis,vector<vecto
   } else if (vis[0].second=="ventana") {
     if (int(vis.size())!=3 || ! esnatural(vis[1].second) || ! esnatural(vis[2].second))
       morir(linea,columna,vis[0].second+" requiere 'ancho' 'alto'.");
-    window.setSize(sf::Vector2u(mystoi(vis[1].second),mystoi(vis[2].second)));
+    //window.setSize(sf::Vector2u(mystoi(vis[1].second),mystoi(vis[2].second)));
+    anchowindow=mystoi(vis[1].second);
+    altowindow=mystoi(vis[2].second);
   } else if (vis[0].second=="profundidad") {
     if (int(vis.size())!=4 || ! esentero(vis[3].second))
       morir(linea,columna,vis[0].second+" requiere 'idpersonaje' 'idcaracteristica' 'profundidad(entero)'.");
@@ -570,7 +592,7 @@ void escribe(vector<estadogeneral> &ve)
 void transformaaestados(vector<string> &vs,vector<estadogeneral> &ve,estadogeneral &e,
 			map<string,int> &color,map<char,char> &letra2letra,
 			//vector<pair<int,string> > &listaaudios,
-			bool &instantaneo,map<string,int> &frametransicion)
+			bool &instantaneo)
 {
   if (vs[0]=="instantaneo") {
     instantaneo=true;
@@ -777,6 +799,9 @@ void transformaaestados(vector<string> &vs,vector<estadogeneral> &ve,estadogener
     e.p[vs[1]].caracteristica2profundidad[vs[2]]=mystoi(vs[3]);
   } else if (vs[0]=="flip") {
     e.p[vs[1]].flip^=1;
+  } else {
+    cout<<"Instruccion inesperada "<<vs[0]<<"."<<endl;
+    exit(0);
   }
 }
 
@@ -785,10 +810,10 @@ void transformaaestados(vector<vector<string> > &vvs,vector<estadogeneral> &ve)
 {
   estadogeneral e;
   map<string,int> frametransicion;
-  e.xcamara=window.getSize().x/2;
-  e.ycamara=window.getSize().y/2;
-  e.anchocamara=window.getSize().x;
-  e.altocamara=window.getSize().y;
+  e.xcamara=anchowindow/2;//window.getSize().x/2;
+  e.ycamara=altowindow/2;//window.getSize().y/2;
+  e.anchocamara=anchowindow;//window.getSize().x;
+  e.altocamara=altowindow;//window.getSize().y;
   bool instantaneo=false;
   map<string,int> color;
   map<char,char> letra2letra;
@@ -797,15 +822,65 @@ void transformaaestados(vector<vector<string> > &vvs,vector<estadogeneral> &ve)
       while (i<int(vvs.size()) and vvs[i][0]!="finobviar")
 	i++;
     else if (vvs[i][0]=="transicionini") {
-      if (frametransicion.count(vvs[i][1])) {
-	cout<<"Transicion "<<vvs[i][1]<<" se definio dos veces."<<endl;
+      string idtransicion=vvs[i][1];
+      if (frametransicion.count(idtransicion)) {
+	cout<<"Transicion "<<idtransicion<<" se definio dos veces."<<endl;
 	exit(0);
       }
-      frametransicion[vvs[i][1]]=int(ve.size());
+      frametransicion[idtransicion]=int(ve.size());
     } else if (vvs[i][0]=="transicionter") {
-
+      string idtransicion=vvs[i][1];
+      if (frametransicion.count(idtransicion)==0) {
+	cout<<"Transicion "<<idtransicion<<" no definida."<<endl;
+	exit(0);
+      }
+      int frameinitransicion=frametransicion[idtransicion];
+      int framefintransicion=int(ve.size())-1;
+      i++;
+      int jini=i;
+      while (i<int(vvs.size()) and vvs[i][0]!="transicionfin") i++;
+      if (i>=int(vvs.size()) or vvs[i][1]!=idtransicion) {
+	cout<<"Transicion "<<idtransicion<<" sin marca de final."<<endl;
+	exit(0);
+      }
+      int jfin=i-1;
+      for (int frame=frameinitransicion;frame<=framefintransicion;frame++) {
+	double factor0=0,factor1=1;
+	if (frame<framefintransicion) {
+	  factor0=double(framefintransicion-frame)/(framefintransicion-frameinitransicion);
+	  factor1=double(frame-frameinitransicion)/(framefintransicion-frameinitransicion);
+	}
+	for (int j=jini;j<=jfin;j++) {
+	  vector<string> &vs=vvs[j];
+	  if (vs[0]=="camara") {
+	    int xcamaraini=ve[frameinitransicion].xcamara;
+	    int ycamaraini=ve[frameinitransicion].ycamara;
+	    int anchocamaraini=ve[frameinitransicion].anchocamara;
+	    int altocamaraini=ve[frameinitransicion].altocamara;
+	    e.xcamara=mystoi(vs[1]);
+	    e.ycamara=mystoi(vs[2]);
+	    e.anchocamara=mystoi(vs[3]);
+	    e.altocamara=mystoi(vs[4]);
+	    ve[frame].xcamara=xcamaraini*factor0+e.xcamara*factor1;
+	    ve[frame].ycamara=ycamaraini*factor0+e.ycamara*factor1;
+	    ve[frame].anchocamara=anchocamaraini*factor0+e.anchocamara*factor1;
+	    ve[frame].altocamara=altocamaraini*factor0+e.altocamara*factor1;
+	  } else if (vs[0]=="coloca") {
+	    int xini=ve[frameinitransicion].p[vs[1]].x;
+	    int yini=ve[frameinitransicion].p[vs[1]].y;
+	    estadopersonaje &p=e.p[vs[1]];
+	    p.x=mystoi(vs[2]);
+	    p.y=mystoi(vs[3]);
+	    ve[frame].p[vs[1]].x=xini*factor0+p.x*factor1;
+	    ve[frame].p[vs[1]].y=yini*factor0+p.y*factor1;
+	  } else {
+	    cout<<"Instruccion "<<vs[0]<<" no permitida en definicion de transicion "<<idtransicion<<"."<<endl;
+	    exit(0);
+	  }
+	}
+      }
     } else
-      transformaaestados(vvs[i],ve,e,color,letra2letra/*,listaaudios*/,instantaneo,frametransicion);
+      transformaaestados(vvs[i],ve,e,color,letra2letra/*,listaaudios*/,instantaneo);
   }
 }
 
@@ -883,11 +958,46 @@ void cargarve(vector<estadogeneral> &ve)//,vector<pair<int,string> > &listaaudio
   //escribe(ve);
 }
 
+
+
+void texturarestadogeneral(estadogeneral &e)
+{
+  renderTexture.clear(sf::Color::Black);
+  vector<plandibujo> vp=transformaaplandibujo(e);
+  float xescala=float(renderTexture.getSize().x)/e.anchocamara;
+  float yescala=float(renderTexture.getSize().y)/e.altocamara;
+  float leftrenderTexture=e.xcamara-e.anchocamara/2.0;
+  float toprenderTexture=e.ycamara-e.altocamara/2.0;
+  //cout<<"("<<renderTexture.getSize().x<<","<<renderTexture.getSize().y<<")";
+  for (int i=0;i<int(vp.size());i++) {
+    plandibujo &p=vp[i];
+    infodibujo &info=obtenerdibujo(p.dibujo);
+    float xdesp=p.x-leftrenderTexture;
+    float ydesp=p.y-toprenderTexture;
+    info.b.setOrigin(p.xcentro-info.x,p.ycentro-info.y);
+    info.b.setPosition(xdesp*xescala,ydesp*yescala);
+    info.b.setScale(xescala*p.xescala/100.0,yescala*p.yescala/100.0);
+    info.b.setColor(sf::Color(e.luz,e.luz,e.luz,255));
+    renderTexture.draw(info.b);
+  }
+
+  sf::View view;
+  view.setCenter(sf::Vector2f(renderTexture.getSize().x/2.0,renderTexture.getSize().y/2.0));
+  view.setSize(sf::Vector2f(renderTexture.getSize().x,renderTexture.getSize().y));
+  renderTexture.setView(view);
+  
+  renderTexture.display();
+}
+
+void salvartexturageneral(string nombrefichero)
+{
+  renderTexture.getTexture().copyToImage().saveToFile(nombrefichero);
+}
+
+
 map<string,sf::IntRect> boton2rect;
 float tantoladoboton=0.05;
 float ladoboton;
-
-
 
 void dibujarestadogeneral(estadogeneral &e,int frame,int totalframes)
 {
@@ -1012,20 +1122,8 @@ string obtenerfechamodificacioncomandos()
     return leelineafichero("listaficheros.txt");
 }
 
-int main()
+void ejecutaremision()
 {
-  //allegro_init();
-  //install_keyboard();
-  //install_timer();
-  //set_color_depth(24);
-  ////set_gfx_mode( GFX_AUTODETECT, 1280, 800, 0, 0);
-  //set_gfx_mode( GFX_AUTODETECT, 1000, 700, 0, 0);
-  //install_sound(DIGI_AUTODETECT,MIDI_NONE,NULL);
-  
-  //set_uformat(U_UTF8);
-
-  //system("del bmps\\*.bmp");
-
   cargardibujos();
   cargargraficossoporte();
   cargaraudio();
@@ -1034,21 +1132,17 @@ int main()
 
   sf::Sound sound;
 
-  window.create(sf::VideoMode(1000,700),"Dibujos animados");
-
-
 
   vector<estadogeneral> ve;
-  //vector<pair<int,string> > listaaudios;
 
-  cargarve(ve);//,listaaudios);
+  cargarve(ve);
   if (int(ve.size())<=1) {
     cout<<"Error: no hay frames"<<endl;
     exit(0);
   }
   string fechamodificacioncomandos=obtenerfechamodificacioncomandos();
-  
-  //int ilistaaudios=0;
+
+  window.create(sf::VideoMode(anchowindow,altowindow),"Dibujos animados");
   
   iniciartiempo();
 
@@ -1057,7 +1151,7 @@ int main()
   int faseaccion=0;
   int periodoaccion=2;
   int frame=0;
-  //for (int i=0;i<int(ve.size()) /*&& !key[KEY_ESC]*/;i++) {
+
   for (;;) {
     sf::Event event;
     while (window.pollEvent(event)) {
@@ -1150,12 +1244,6 @@ int main()
 	break;
       }
     }
-    /*
-    if (ilistaaudios<int(listaaudios.size()) and listaaudios[ilistaaudios].first==i) {
-      sound.setBuffer(obteneraudiobuffer(listaaudios[ilistaaudios++].second));
-      sound.play();
-    }
-    */
     if (accion=="play") {
       if (ve[frame].accionaudio==1) {
 	sound.stop();
@@ -1226,28 +1314,37 @@ int main()
 	if (frame<0) frame=0;
       }
     }
-
     esperartiempo();
-
-    //acquire_screen();
-    
-    //draw_sprite( screen, pantalla, 0, 0);
-    
-    //release_screen();
-    
-    //string nombrefichero="bmps\\f"+itosfichero(i)+".bmp";
-    //save_bitmap(nombrefichero.c_str(),pantalla,NULL);
-    
-    //clear_keybuf();
-    //rest(100);
-    //rest(1000/framespersecond);
-    
-    //usleep(1000000/framespersecond);
   }
-  
-  //return 0;
-    
+}
+
+void ejecutargrabacion()
+{
+  grabando=true;
+  system("rm BMPS/*");
+  cargardibujos();
+  cargaraudio();
+  vector<estadogeneral> ve;
+  cargarve(ve);
+  if (int(ve.size())<=1) {
+    cout<<"Error: no hay frames"<<endl;
+    exit(0);
+  }
+  renderTexture.create(anchowindow,altowindow);
+  for (int frame=0;frame<int(ve.size());frame++) {
+    cout<<"FRAME "<<frame+1<<" de "<<int(ve.size())<<endl;
+    texturarestadogeneral(ve[frame]);
+    salvartexturageneral("BMPS/frame"+itos5(frame)+".jpg");
+  }
+  string comando="cd BMPS && ffmpeg -f image2 -framerate "+itos(framespersecond)+" -i frame%05d.jpg video.avi";
+  system(comando.c_str());
+}
+
+
+int main(int argc,char *argv[])
+{
+  if (argc>=2) ejecutargrabacion();
+  else ejecutaremision();
 }   
-//END_OF_MAIN();
 
 
