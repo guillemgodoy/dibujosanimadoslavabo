@@ -389,28 +389,27 @@ forma person brazoderecha palma
 
 habla person eeeesssseeaaatteeeennuuppaaaddeeeettaarraaddooooooossss esquehacenunpardetarados.wav
 
-// VOY POR AQUI 
 
-habla person plantificadosdentrodeunlavabopublicoycriticandoalosdemas plantificadosdentrodeunlavabopublicoycriticandoalosdemas.wav
+habla person ppaaaaaattttiiffiiaaaaddoooossddeettoooooooodduuuullaaaammaammoooommuuuummlliiooooooooooooiiiirriittiiaaaaaaddooaaooooooddeemmmaaaaaaaaassssssss plantificadosdentrodeunlavabopublicoycriticandoalosdemas.wav
 
-habla kevin miiraaa mira2.wav
+habla kevin mmiirraaaaaaa mira2.wav
 
 forma friend ojosfriend izquierda
 forma kevin ojoskevin derecha
 forma friend bocafriend oh
 
-habla kevin encimanosestasermoneandoeltio encimanosestasermoneandoeltio.wav
+habla kevin eeeettttiimmaaaannoooosseettaaaaeeeerrmmoooonneeaaaaddooooeeeettiiiioooooooooooo encimanosestasermoneandoeltio.wav
 
 forma kevin ojoskevin izquierda
 forma kevin bocakevin m
 
-habla person cuaandooeeentreeeeneeellaavaabo cuandoentreenellavabo.wav
+habla person uuaaddddooeetteenneeeellllaammaaammoooooooooooo cuandoentreenellavabo.wav
 
-habla person yviaestostios yviaestostios.wav
+habla person iiimmiiaaeeddoooorriiiiooooooosssssss yviaestostios.wav
 
-habla person yameesperabalopeor yameesperabalopeor.wav
+habla person aaaammmeeeemmeerraammaalloooooommeeooooooorrrrrr yameesperabalopeor.wav
 
-habla person eeeessssseeeeennnnooooosssseeeeeeeeppppueeeeedeeeeeenpeeeediiiirmmmmmmmmpeerraaaasallllooolllmooooooooooooo esquenosepuedenpedirperasalholmo.wav
+habla person eesseeennoooooosseeemmuueeddeeemmeediiirrmmmmmmmmmmmmmeerraaassaaalloooollmmooooooooooooo esquenosepuedenpedirperasalholmo.wav
 forma person bocaperson m
 forma kevin bocakevin o
 forma friend bocafriend puaj
@@ -421,7 +420,7 @@ mueve person 150 300 1000
 forma friend ojosfriend medio
 forma kevin ojoskevin medio
 forma person ojosperson medio
-habla person irosaunparquehombre irosaunparquehombre.wav
+habla person iirroooossaauummaaaarreeeeeeeeeeeoooommrreeeeeeeeeee irosaunparquehombre.wav
 forma person bocaperson m
 forma person ojosperson derecha
 mueve person 0 400 1500
@@ -437,26 +436,25 @@ forma friend ojosfriend izquierda
 forma kevin ojoskevin derecha
 forma friend bocafriend uh
 
-habla kevin mmmmm snif.wav
 forma kevin narizkevin respira 
-tiempo 200
-forma kevin narizkevin normal
-tiempo 200
 habla kevin mmmmm snif.wav
-forma kevin narizkevin respira
-tiempo 200
 forma kevin narizkevin normal
+tiempo 200
+forma kevin narizkevin respira
+habla kevin mmmmm snif.wav
+forma kevin narizkevin normal
+tiempo 200
 
-habla kevin ostia ostia.wav
+habla kevin oooossttiiaaaaaaaa ostia.wav
 
 forma friend bocafriend mh
 
-habla kevin esqueelolornoseva esqueelolornoseva.wav
+habla kevin eeesseeeeelloolloorrrnnooooosseemmaaaaaaaaaaaaa esqueelolornoseva.wav
 
 forma friend bocafriend puajdos
 forma friend cejasfriend oneup
 
-habla kevin nosiesquealfinalvamosatenerqueirnosaotrositioporsuculpa nosiesquealfinalvamosatenerqueirnosaotrositioporsuculpa.wav
+habla kevin nnooooooooossiieeesseeaaaaaaaallffiiiinnaaaaaaaaaaallmmaaaammooossaatteenneerreeiirrooooossaaoottoooiittiiooooppoorrssuuuuuuuuuullllmmaaaaaaaaaaaaaaaa nosiesquealfinalvamosatenerqueirnosaotrositioporsuculpa.wav
 
 forma friend bocafriend triste
 forma kevin bocakevin f
