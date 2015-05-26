@@ -543,6 +543,7 @@ forma friend bocafriend mh
 
 
 habla person uuaaddddooeetteenneeeellllaammaaammoooooooooooo cuandoentreenellavabo.wav
+forma kevin brazoizquierda normal
 
 habla person iiimmiiaaeeddoooorriiiiooooooosssssss yviaestostios.wav
 
@@ -557,7 +558,7 @@ forma kevin cejaskevin oneup
 forma friend cejasfriend oneup
 forma kevin bocakevin o
 forma friend bocafriend oh
-forma kevin brazoizquierda normal
+
 
 habla person eesseeennoooooosseeemmuueeddeeemmeediiirrmmmmmmmmmmmmmeerraaassaaalloooollmmooooooooooooo esquenosepuedenpedirperasalholmo.wav
 
@@ -592,9 +593,13 @@ forma kevin brazoderecha fuckyou
 forma friend brazoderecha fuckyou
 forma person bocaperson m
 forma person ojosperson derecha
+forma friend ojosfriend derecha
+forma kevin ojoskevin derecha
 tiempo 1000
 transicionter personseva
 coloca person 0 400
+
+
 transicionfin personseva
 
 tiempo 1000
@@ -604,8 +609,6 @@ forma friend brazoderecha normal
 
 
 forma friend cejasfriend oneup
-forma friend ojosfriend derecha
-forma kevin ojoskevin derecha
 
 tiempo 1000
 
