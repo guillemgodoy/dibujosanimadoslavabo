@@ -75,6 +75,9 @@ forma fondo fondo normal2
 prefijoboca kevin bocakevin
 prefijoboca person bocaperson
 
+forma person gafasperson normal
+forma person orejasperson normal
+
 // gafas orejas
 
 profundidad fondo fondonormal2 -10
@@ -121,7 +124,8 @@ profundidad person narizperson 1000
 profundidad person cejasperson 1100
 profundidad person bocaperson 1200
 profundidad person peloperson 1300
-
+profundidad person gafasperson 1400
+profundidad person orejasperson 1400
 
 
 // CENTRAMOS A LOS PERSONAJES
@@ -367,6 +371,7 @@ transicionini desplazamiento
 tiempo 1000
 transicionter desplazamiento
 camara 175 360 350 197
+//camara 175 360 650 197
 coloca person 300 270
 transicionfin desplazamiento
 
@@ -495,7 +500,7 @@ forma friend bocafriend puaj
 forma kevin bocakevin o
 forma kevin cejaskevin admirado
 forma friend cejasfriend admirado
-forma person brazoderecha uno
+forma person brazoderecha unodos
 forma person brazoizquierda normal
 //forma kevin ojoskevin izquierda
 
