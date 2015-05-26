@@ -1030,6 +1030,8 @@ void dibujarestadogeneral(estadogeneral &e,int frame,int totalframes)
     window.draw(info.b);
   }
 
+  /* Descomentar estas lineas para recuperar los botones
+
   ladoboton=tantoladoboton*min(window.getSize().x,window.getSize().y);
   boton2rect["play"]=sf::IntRect(ladoboton,window.getSize().y-2*ladoboton,ladoboton,ladoboton);
   boton2rect["pause"]=sf::IntRect(3*ladoboton,window.getSize().y-2*ladoboton,ladoboton,ladoboton);
@@ -1062,6 +1064,8 @@ void dibujarestadogeneral(estadogeneral &e,int frame,int totalframes)
     text.setPosition(sf::Vector2f(window.getSize().x/2.0,window.getSize().y-5*ladoboton));
     window.draw(text);
   }
+
+  */
 
   sf::View view;
   view.setCenter(sf::Vector2f(window.getSize().x/2.0,window.getSize().y/2.0));
@@ -1148,6 +1152,10 @@ void ejecutaremision()
 
   int framestop=0;
   string accion="stop";
+
+  // Comentar la siguiente linea para recuperar el stop inicial
+  accion="play";
+
   int faseaccion=0;
   int periodoaccion=2;
   int frame=0;
