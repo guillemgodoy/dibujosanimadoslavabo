@@ -597,7 +597,7 @@ forma friend ojosfriend derecha
 forma kevin ojoskevin derecha
 tiempo 1000
 transicionter personseva
-coloca person 0 400
+coloca person -20 420
 
 
 transicionfin personseva
