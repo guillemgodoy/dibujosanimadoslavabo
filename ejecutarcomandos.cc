@@ -26,6 +26,8 @@ const int SCRHEIGHT = 600;
 using namespace std;
 
 bool grabando=false;
+bool haybotones=true;
+int desplazamientoaudio=0;
 int anchowindow,altowindow;
 sf::RenderWindow window;
 sf::RenderTexture renderTexture;
@@ -955,6 +957,34 @@ void cargarve(vector<estadogeneral> &ve)//,vector<pair<int,string> > &listaaudio
   //cout<<endl;
   //escribe(vvs);
   transformaaestados(vvs,ve);//,listaaudios);
+
+  if (desplazamientoaudio>0) {
+    for (int i=int(ve.size())-1;i>=0;i--) {
+      if (i>=desplazamientoaudio) {
+	ve[i].accionaudio=ve[i-desplazamientoaudio].accionaudio;
+	ve[i].nombreaudio=ve[i-desplazamientoaudio].nombreaudio;
+	ve[i].tantoaudio=ve[i-desplazamientoaudio].tantoaudio;
+      } else {
+	ve[i].accionaudio=0;
+	ve[i].nombreaudio="";
+	ve[i].tantoaudio=0;
+      }
+    }
+  } else if (desplazamientoaudio<0) {
+    desplazamientoaudio*=-1;
+    for (int i=0;i<int(ve.size());i++) {
+      if (i<int(ve.size())-desplazamientoaudio) {
+	ve[i].accionaudio=ve[i+desplazamientoaudio].accionaudio;
+	ve[i].nombreaudio=ve[i+desplazamientoaudio].nombreaudio;
+	ve[i].tantoaudio=ve[i+desplazamientoaudio].tantoaudio;
+      } else {
+	ve[i].accionaudio=0;
+	ve[i].nombreaudio="";
+	ve[i].tantoaudio=0;
+      }
+    }
+    desplazamientoaudio*=-1;
+  }
   //escribe(ve);
 }
 
@@ -1030,43 +1060,40 @@ void dibujarestadogeneral(estadogeneral &e,int frame,int totalframes)
     window.draw(info.b);
   }
 
-  /* Descomentar estas lineas para recuperar los botones
-
-  ladoboton=tantoladoboton*min(window.getSize().x,window.getSize().y);
-  boton2rect["play"]=sf::IntRect(ladoboton,window.getSize().y-2*ladoboton,ladoboton,ladoboton);
-  boton2rect["pause"]=sf::IntRect(3*ladoboton,window.getSize().y-2*ladoboton,ladoboton,ladoboton);
-  boton2rect["stop"]=sf::IntRect(5*ladoboton,window.getSize().y-2*ladoboton,ladoboton,ladoboton);
-  boton2rect["rev"]=sf::IntRect(7*ladoboton,window.getSize().y-2*ladoboton,ladoboton,ladoboton);
-  boton2rect["barra"]=sf::IntRect(9*ladoboton,window.getSize().y-2*ladoboton,window.getSize().x-10*ladoboton,ladoboton);
-  boton2rect["indicador"]=sf::IntRect(float(totalframes-1-frame)/(totalframes-1)*9*ladoboton+
-				      float(frame)/(totalframes-1)*(window.getSize().x-ladoboton)-ladoboton/10,
-				      window.getSize().y-2*ladoboton,ladoboton/5,ladoboton);
-  boton2rect["slow"]=sf::IntRect(ladoboton,window.getSize().y-4*ladoboton,ladoboton,ladoboton);
-  boton2rect["slowstop"]=sf::IntRect(3*ladoboton,window.getSize().y-4*ladoboton,ladoboton,ladoboton);
-  boton2rect["slowrev"]=sf::IntRect(5*ladoboton,window.getSize().y-4*ladoboton,ladoboton,ladoboton);
-
-  for (map<string,sf::IntRect>::iterator it=boton2rect.begin();it!=boton2rect.end();it++) {
-    string nombre=it->first;
-    sf::IntRect rect=it->second;
-    infodibujo &info=obtenerdibujo("boton"+nombre);
-    info.b.setPosition(rect.left,rect.top);
-    info.b.setScale(float(rect.width)/info.width,float(rect.height)/info.height);
-    window.draw(info.b);
+  if (haybotones) {
+    ladoboton=tantoladoboton*min(window.getSize().x,window.getSize().y);
+    boton2rect["play"]=sf::IntRect(ladoboton,window.getSize().y-2*ladoboton,ladoboton,ladoboton);
+    boton2rect["pause"]=sf::IntRect(3*ladoboton,window.getSize().y-2*ladoboton,ladoboton,ladoboton);
+    boton2rect["stop"]=sf::IntRect(5*ladoboton,window.getSize().y-2*ladoboton,ladoboton,ladoboton);
+    boton2rect["rev"]=sf::IntRect(7*ladoboton,window.getSize().y-2*ladoboton,ladoboton,ladoboton);
+    boton2rect["barra"]=sf::IntRect(9*ladoboton,window.getSize().y-2*ladoboton,window.getSize().x-10*ladoboton,ladoboton);
+    boton2rect["indicador"]=sf::IntRect(float(totalframes-1-frame)/(totalframes-1)*9*ladoboton+
+					float(frame)/(totalframes-1)*(window.getSize().x-ladoboton)-ladoboton/10,
+					window.getSize().y-2*ladoboton,ladoboton/5,ladoboton);
+    boton2rect["slow"]=sf::IntRect(ladoboton,window.getSize().y-4*ladoboton,ladoboton,ladoboton);
+    boton2rect["slowstop"]=sf::IntRect(3*ladoboton,window.getSize().y-4*ladoboton,ladoboton,ladoboton);
+    boton2rect["slowrev"]=sf::IntRect(5*ladoboton,window.getSize().y-4*ladoboton,ladoboton,ladoboton);
+    
+    for (map<string,sf::IntRect>::iterator it=boton2rect.begin();it!=boton2rect.end();it++) {
+      string nombre=it->first;
+      sf::IntRect rect=it->second;
+      infodibujo &info=obtenerdibujo("boton"+nombre);
+      info.b.setPosition(rect.left,rect.top);
+      info.b.setScale(float(rect.width)/info.width,float(rect.height)/info.height);
+      window.draw(info.b);
+    }
+    
+    if (e.accionaudio==1 or e.accionaudio==2) {
+      sf::Text text;
+      text.setString(e.nombreaudio);
+      text.setFont(font);
+      text.setColor(sf::Color::Yellow);
+      text.setOrigin(sf::Vector2f(text.getLocalBounds().width/2.0,text.getLocalBounds().height/2.0));
+      text.setScale(sf::Vector2f(float(ladoboton)/text.getLocalBounds().height,float(ladoboton)/text.getLocalBounds().height));
+      text.setPosition(sf::Vector2f(window.getSize().x/2.0,window.getSize().y-5*ladoboton));
+      window.draw(text);
+    }
   }
-
-  if (e.accionaudio==1 or e.accionaudio==2) {
-    sf::Text text;
-    text.setString(e.nombreaudio);
-    text.setFont(font);
-    text.setColor(sf::Color::Yellow);
-    text.setOrigin(sf::Vector2f(text.getLocalBounds().width/2.0,text.getLocalBounds().height/2.0));
-    text.setScale(sf::Vector2f(float(ladoboton)/text.getLocalBounds().height,float(ladoboton)/text.getLocalBounds().height));
-    text.setPosition(sf::Vector2f(window.getSize().x/2.0,window.getSize().y-5*ladoboton));
-    window.draw(text);
-  }
-
-  */
-
   sf::View view;
   view.setCenter(sf::Vector2f(window.getSize().x/2.0,window.getSize().y/2.0));
   view.setSize(sf::Vector2f(window.getSize().x,window.getSize().y));
@@ -1152,10 +1179,8 @@ void ejecutaremision()
 
   int framestop=0;
   string accion="stop";
-
-  // Comentar la siguiente linea para recuperar el stop inicial
-  accion="play";
-
+  if (not haybotones)
+    accion="play";
   int faseaccion=0;
   int periodoaccion=2;
   int frame=0;
@@ -1351,8 +1376,16 @@ void ejecutargrabacion()
 
 int main(int argc,char *argv[])
 {
-  if (argc>=2) ejecutargrabacion();
-  else ejecutaremision();
-}   
+  if (argc>=2) {
+    string s=argv[1];
+    if (esentero(s)) {
+      haybotones=false;
+      desplazamientoaudio=mystoi(s);
+    }
+  }
+  //if (argc>=2) ejecutargrabacion();
+  //else
+  ejecutaremision();
+}
 
 
